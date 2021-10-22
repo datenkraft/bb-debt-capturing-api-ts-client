@@ -26,7 +26,7 @@ The Client is auto-generated with [ferdikoomen/openapi-typescript-codegen](https
 
 ~~~~ typescript
 import { ConfigOptions } from '@datenkraft/bb-base-api-ts-client';
-import { SkuCatalogApiClient } from '@datenkraft/bb-debt-capturing-api-ts-client';
+import { DebtCapturingApiClient } from '@datenkraft/bb-debt-capturing-api-ts-client';
 
 const configOptions: ConfigOptions = {
   clientId: 'clientId',
@@ -44,7 +44,7 @@ DebtCapturingApiClient.init(configOptions).then(() => {
 
 ### Example Endpoint: Get DebtLineItem
 ~~~~ typescript
-SkuCatalogApiClient.Generated.SkuService.getDebtLineItem('12345678-90ab-cdef-1234-567890abcdef')
+DebtCapturingApiClient.Generated.SkuService.getDebtLineItem('12345678-90ab-cdef-1234-567890abcdef')
   .then((debtLineItem) => {
     // Request succeeded
   })
