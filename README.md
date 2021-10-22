@@ -13,7 +13,7 @@ The Debt Capturing API TS Client enables you to work with the Debt Capturing API
 You can use [npm](https://www.npmjs.com/) to install the package.
 
 ~~~~ bash
-npm install @datenkraft/bb-sku-catalog-api-ts-client
+npm install @datenkraft/bb-debt-capturing-api-ts-client
 ~~~~
 
 ## Using the package
@@ -37,15 +37,15 @@ const configOptions: ConfigOptions = {
   useExternalIdToken: true,
 };
 
-SkuCatalogApiClient.init(configOptions).then(() => {
+DebtCapturingApiClient.init(configOptions).then(() => {
   // Client is initialized
 });
 ~~~~
 
-### Example Endpoint: Get SKU
+### Example Endpoint: Get DebtLineItem
 ~~~~ typescript
-SkuCatalogApiClient.Generated.SkuService.getSku('skuCode')
-  .then((sku) => {
+SkuCatalogApiClient.Generated.SkuService.getDebtLineItem('12345678-90ab-cdef-1234-567890abcdef')
+  .then((debtLineItem) => {
     // Request succeeded
   })
   .catch((error) => {
