@@ -44,7 +44,7 @@ DebtCapturingApiClient.init(configOptions).then(() => {
 
 ### Example Endpoint: Get DebtLineItem
 ~~~~ typescript
-DebtCapturingApiClient.Generated.SkuService.getDebtLineItem('12345678-90ab-cdef-1234-567890abcdef')
+DebtCapturingApiClient.Generated.DebtLineItemService.getDebtLineItem('12345678-90ab-cdef-1234-567890abcdef')
   .then((debtLineItem) => {
     // Request succeeded
   })
