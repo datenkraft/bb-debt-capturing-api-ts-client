@@ -44,7 +44,8 @@ DebtCapturingApiClient.init(configOptions).then(() => {
 
 ### Example Endpoint: Get DebtLineItem
 ~~~~ typescript
-DebtCapturingApiClient.Generated.DebtLineItemService.getDebtLineItem('12345678-90ab-cdef-1234-567890abcdef')
+DebtCapturingApiClient.Generated.DebtLineItemService
+  .getDebtLineItem('debt-line-item-id')
   .then((debtLineItem) => {
     // Request succeeded
   })
