@@ -16,18 +16,20 @@ describe('Client Test (staging)', () => {
         )
             .then(() => {
                 DebtCapturingApiClient.Generated.DebtLineItemService
-                    .getDebtLineItem('c4f96d2a-eee7-437f-bf78-622d8a1ae820')
+                    .getDebtLineItem('00000000-0000-0000-0000-000000000000')
                     .then((debtLineItem) => {
                         expect(debtLineItem).toEqual({
-                            Id: '00000000-0000-0000-0000-000000000000',
-                            Sku_Code: 'test_sku_code',
-                            Quantity: 1,
-                            Project_Id: '00000000-0000-0000-0000-000000000000',
-                            UsageStart: '2021-01-01T00:00:00+00:00',
-                            UsageEnd: '2021-01-01T23:59:59+00:00',
-                            PriceTotalMinorMicro: 100000000,
-                            PriceCurrency: 'EUR',
-                            InvoiceNumber: 'test_invoice_number',
+                            debtLineItemId: '00000000-0000-0000-0000-000000000000',
+                            skuCode: 'test_sku_code',
+                            quantity: 1,
+                            projectId: 'ba74c99d-d622-4dcd-a1d5-f3db80d0a1c8',
+                            usageStart: '2021-01-01T00:00:00+00:00',
+                            usageEnd: '2021-01-01T23:59:59+00:00',
+                            priceTotal: {
+                                currency: 'EUR',
+                                minorMicro: 100000000,
+                            },
+                            invoiceNumber: 'test_invoice_number',
                         });
                         done();
                     })
