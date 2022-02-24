@@ -6,19 +6,19 @@ import type { priceProperty } from './priceProperty';
 
 export type debtLineItemResource = {
     /**
-     * Debt Line Item ID
+     * debtLineItemId
      */
     debtLineItemId: string;
     /**
-     * SKU Code
+     * skuCode
      */
     skuCode: string;
     /**
-     * Quantity
+     * quantity
      */
     quantity?: number | null;
     /**
-     * Project Id
+     * projectId
      */
     projectId: string;
     /**
@@ -31,7 +31,7 @@ export type debtLineItemResource = {
     usageEnd: string;
     priceTotal?: priceProperty;
     /**
-     * Invoice number
+     * invoiceNumber
      */
     invoiceNumber?: string | null;
 }

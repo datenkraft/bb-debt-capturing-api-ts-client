@@ -4,11 +4,11 @@
 
 export type priceProperty = {
     /**
-     * MinorMicro
+     * minorMicro
      */
-    minorMicro: number | null;
+    minorMicro?: number | null;
     /**
-     * Currency
+     * currency
      */
-    currency: string | null;
+    currency?: string | null;
 }
