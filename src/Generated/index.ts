@@ -14,8 +14,6 @@ export type { error } from './models/error';
 export type { errorResponse } from './models/errorResponse';
 export type { getAuthPermissionCollectionResponse } from './models/getAuthPermissionCollectionResponse';
 export type { getDebtLineItemCollectionResponse } from './models/getDebtLineItemCollectionResponse';
-export type { patchDebtLineItemCollectionRequest } from './models/patchDebtLineItemCollectionRequest';
-export type { patchDebtLineItemResource } from './models/patchDebtLineItemResource';
 export type { priceProperty } from './models/priceProperty';
 
 export { AuthRoleIdentityService } from './services/AuthRoleIdentityService';

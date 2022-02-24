@@ -4,17 +4,16 @@
 import type { debtLineItemResource } from '../models/debtLineItemResource';
 import type { errorResponse } from '../models/errorResponse';
 import type { getDebtLineItemCollectionResponse } from '../models/getDebtLineItemCollectionResponse';
-import type { patchDebtLineItemCollectionRequest } from '../models/patchDebtLineItemCollectionRequest';
 import { request as __request } from '../core/request';
 
 export class DebtLineItemService {
 
     /**
-     * Get debtLineItems csv export.
-     * Get debtLineItems csv export.
+     * Get debtLineItems csv export by projectId and time range
+     * Get debtLineItems csv export by projectId and time range
      * @param filterProjectId projectId filter
-     * @param filterDateFrom Date from filter
-     * @param filterDateTo Date to filter
+     * @param filterDateFrom dateFrom filter
+     * @param filterDateTo dateTo filter
      * @returns any OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -43,11 +42,11 @@ export class DebtLineItemService {
     }
 
     /**
-     * Query Debt Line Items by projectId and time range
-     * Query Debt Line Items by projectId and time range
+     * Get debtLineItems by projectId and time range
+     * Get debtLineItems by projectId and time range
      * @param filterProjectId projectId filter
-     * @param filterDateFrom Date from filter
-     * @param filterDateTo Date to filter
+     * @param filterDateFrom dateFrom filter
+     * @param filterDateTo dateTo filter
      * @returns getDebtLineItemCollectionResponse OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -76,26 +75,41 @@ export class DebtLineItemService {
     }
 
     /**
-     * Update one or more Debt Line Items
-     * Update one or more fields of one ore more Debt Line Items
+     * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
+     * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
+     * @param filterProjectId projectId filter
+     * @param filterDateFrom dateFrom filter
+     * @param filterDateTo dateTo filter
      * @param requestBody
      * @returns getDebtLineItemCollectionResponse OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async patchDebtLineItemCollection(
-        requestBody: patchDebtLineItemCollectionRequest,
+        filterProjectId: string,
+        filterDateFrom: string,
+        filterDateTo: string,
+        requestBody: {
+            /**
+             * invoiceNumber
+             */
+            invoiceNumber?: string,
+        },
     ): Promise<getDebtLineItemCollectionResponse | errorResponse> {
         const result = await __request({
             method: 'PATCH',
             path: `/debt-line-item`,
+            query: {
+                'filter[projectId]': filterProjectId,
+                'filter[dateFrom]': filterDateFrom,
+                'filter[dateTo]': filterDateTo,
+            },
             body: requestBody,
             errors: {
                 400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                404: `Not Found`,
-                422: `Unprocessable Entity`,
+                409: `Conflict`,
                 500: `Server error`,
             },
         });
@@ -103,9 +117,9 @@ export class DebtLineItemService {
     }
 
     /**
-     * Get a Debt Line Item by debtLineItemId
-     * Get a Debt Line Item by debtLineItemId
-     * @param debtLineItemId Debt Line Item ID
+     * Get a debtLineItem by debtLineItemId
+     * Get a debtLineItem by debtLineItemId
+     * @param debtLineItemId debtLineItemId
      * @returns debtLineItemResource OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -121,6 +135,40 @@ export class DebtLineItemService {
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 404: `Not Found`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Update a debtLineItem by debtLineItemId
+     * Update a debtLineItem by debtLineItemId
+     * @param debtLineItemId debtLineItemId
+     * @param requestBody
+     * @returns debtLineItemResource OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async patchDebtLineItem(
+        debtLineItemId: string,
+        requestBody: {
+            /**
+             * invoiceNumber
+             */
+            invoiceNumber?: string,
+        },
+    ): Promise<debtLineItemResource | errorResponse> {
+        const result = await __request({
+            method: 'PATCH',
+            path: `/debt-line-item/${debtLineItemId}`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+                409: `Conflict`,
                 500: `Server error`,
             },
         });
