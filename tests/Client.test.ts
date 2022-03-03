@@ -30,6 +30,11 @@ describe('Client Test (staging)', () => {
                                 minorMicro: 100000000,
                             },
                             invoiceNumber: 'test_invoice_number',
+                            unit: 'test_unit',
+                            pricePerUnit: {
+                                currency: 'EUR',
+                                minorMicro: 100000000,
+                            },
                         });
                         done();
                     })
