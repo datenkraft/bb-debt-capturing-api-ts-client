@@ -34,4 +34,9 @@ export type debtLineItemResource = {
      * invoiceNumber
      */
     invoiceNumber?: string | null;
+    /**
+     * Unit
+     */
+    unit?: string | null;
+    pricePerUnit?: priceProperty;
 }
