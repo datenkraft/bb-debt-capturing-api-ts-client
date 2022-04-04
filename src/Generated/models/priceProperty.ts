@@ -2,6 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
+/**
+ * Class DebtLineItemResource
+ */
 export type priceProperty = {
     /**
      * minorMicro
