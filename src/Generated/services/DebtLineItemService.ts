@@ -9,39 +9,6 @@ import { request as __request } from '../core/request';
 export class DebtLineItemService {
 
     /**
-     * Get debtLineItems csv export by projectId and time range
-     * Get debtLineItems csv export by projectId and time range
-     * @param filterProjectId projectId filter
-     * @param filterDateFrom dateFrom filter
-     * @param filterDateTo dateTo filter
-     * @returns any OK
-     * @returns errorResponse Unexpected error
-     * @throws ApiError
-     */
-    public static async getDebtLineItemCollectionCsv(
-        filterProjectId: string,
-        filterDateFrom: string,
-        filterDateTo: string,
-    ): Promise<any | errorResponse> {
-        const result = await __request({
-            method: 'GET',
-            path: `/debt-line-item/csv`,
-            query: {
-                'filter[projectId]': filterProjectId,
-                'filter[dateFrom]': filterDateFrom,
-                'filter[dateTo]': filterDateTo,
-            },
-            errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                500: `Server error`,
-            },
-        });
-        return result.body;
-    }
-
-    /**
      * Get debtLineItems by projectId and time range
      * Get debtLineItems by projectId and time range
      * @param filterProjectId projectId filter
