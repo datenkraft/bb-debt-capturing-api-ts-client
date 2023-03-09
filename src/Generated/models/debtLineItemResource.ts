@@ -29,7 +29,7 @@ export type debtLineItemResource = {
      * End time of the usage
      */
     usageEnd: string;
-    priceTotal?: priceProperty;
+    priceTotal?: priceProperty | null;
     /**
      * invoiceNumber
      */
@@ -38,5 +38,5 @@ export type debtLineItemResource = {
      * Unit
      */
     unit?: string | null;
-    pricePerUnit?: priceProperty;
+    pricePerUnit?: priceProperty | null;
 }
