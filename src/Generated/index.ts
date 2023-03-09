@@ -16,6 +16,8 @@ export type { error } from './models/error';
 export type { errorResponse } from './models/errorResponse';
 export type { getAuthPermissionCollectionResponse } from './models/getAuthPermissionCollectionResponse';
 export type { getDebtLineItemCollectionResponse } from './models/getDebtLineItemCollectionResponse';
+export type { information } from './models/information';
+export type { informationResponse } from './models/informationResponse';
 export type { priceProperty } from './models/priceProperty';
 export type { skuUsageDebtLineItemResource } from './models/skuUsageDebtLineItemResource';
 export type { skuUsageDebtLineItemResourceCollection } from './models/skuUsageDebtLineItemResourceCollection';
