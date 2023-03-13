@@ -1,6 +1,6 @@
 import { ConfigOptions } from '@datenkraft/bb-base-api-ts-client';
-import { XXXApiClient } from '../dist';
-import { ShopApi } from '../dist/Generated';
+import { XxxApiClient } from '../dist';
+import { XxxApi } from '../dist/Generated';
 
 describe('Client Test (staging)', () => {
   test('Initialize and use the generated Client', (done) => {
@@ -11,16 +11,16 @@ describe('Client Test (staging)', () => {
         'https://authentication-api.staging.backbone.datenkraft.info',
     };
 
-    XXXApiClient.getApiConfig(
+    XxxApiClient.getApiConfig(
       configOptions,
-      'https://XXX-api.staging.backbone.datenkraft.info/v1'
+      'https://Xxx-api.staging.backbone.datenkraft.info/v1'
     )
       .then((config) => {
-        const XXXapi = new XXXApi(config);
+        const Xxxapi = new XxxApi(config);
 
-        api
-          .getXXXCollection()
-          .then((xxx) => {
+        Xxxapi
+          .getXxxCollection()
+          .then((data) => {
         	//testcase  
             }
             done();

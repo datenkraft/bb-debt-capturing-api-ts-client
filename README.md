@@ -13,7 +13,7 @@ The xxx API TS Client enables you to work with the Fulfillment API.
 You can use [npm](https://www.npmjs.com/) to install the package.
 
 ```bash
-npm install @datenkraft/bb-XXX-api-ts-client
+npm install @datenkraft/bb-Xxx-api-ts-client
 ```
 
 ## Using the package
@@ -26,8 +26,8 @@ The Client is auto-generated with [OpenAPITools](https://openapi-generator.tech/
 
 ```typescript
 import { ConfigOptions } from '@datenkraft/bb-base-api-ts-client';
-import { FulfillmentApiClient } from '@datenkraft/bb-XXX-api-ts-client';
-import { ShopApi } from '@datenkraft/bb-XXX-api-ts-client/Generated';
+import { FulfillmentApiClient } from '@datenkraft/bb-Xxx-api-ts-client';
+import { ShopApi } from '@datenkraft/bb-Xxx-api-ts-client/Generated';
 
 const configOptions: ConfigOptions = {
   clientId: 'clientId',
@@ -39,8 +39,8 @@ const configOptions: ConfigOptions = {
 };
 
 FulfillmentApiClient.getApiConfig(configOptions).then((config) => {
-  const XXXApi = new XXXApi(config);
-  XXXApi.getXXXCollection().then((shops) => {});
+  const XxxApi = new XxxApi(config);
+  XxxApi.getXxxCollection().then((data) => {});
 });
 ```
 
