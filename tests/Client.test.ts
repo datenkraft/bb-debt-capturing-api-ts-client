@@ -13,7 +13,7 @@ describe('Client Test (staging)', () => {
 
     XxxApiClient.getApiConfig(
       configOptions,
-      'https://Xxx-api.staging.backbone.datenkraft.info/v1'
+      'https://xxx-api.staging.backbone.datenkraft.info/v1'
     )
       .then((config) => {
         const Xxxapi = new XxxApi(config);
