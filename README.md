@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The xxx API TS Client enables you to work with the Fulfillment API.
+The xxx API TS Client enables you to work with the xxx API.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ The Client is auto-generated with [OpenAPITools](https://openapi-generator.tech/
 
 ```typescript
 import { ConfigOptions } from '@datenkraft/bb-base-api-ts-client';
-import { FulfillmentApiClient } from '@datenkraft/bb-xxx-api-ts-client';
+import { XxxApiClient } from '@datenkraft/bb-xxx-api-ts-client';
 import { ShopApi } from '@datenkraft/bb-xxx-api-ts-client/Generated';
 
 const configOptions: ConfigOptions = {
@@ -38,7 +38,7 @@ const configOptions: ConfigOptions = {
   useExternalIdToken: true,
 };
 
-FulfillmentApiClient.getApiConfig(configOptions).then((config) => {
+XxxApiClient.getApiConfig(configOptions).then((config) => {
   const XxxApi = new XxxApi(config);
   XxxApi.getXxxCollection().then((data) => {});
 });
