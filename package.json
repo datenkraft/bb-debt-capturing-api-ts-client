@@ -9,7 +9,7 @@
     "build": "tsc",
     "watch-build": "tsc -w",
     "test": "jest",
-    "generate": "@openapitools/openapi-generator-cli generate",
+    "generate": "openapi-generator-cli generate",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
   },

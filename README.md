@@ -27,7 +27,7 @@ The Client is auto-generated with [OpenAPITools](https://openapi-generator.tech/
 ```typescript
 import { ConfigOptions } from '@datenkraft/bb-base-api-ts-client';
 import { XxxApiClient } from '@datenkraft/bb-xxx-api-ts-client';
-import { ShopApi } from '@datenkraft/bb-xxx-api-ts-client/Generated';
+import { XxxApi } from '@datenkraft/bb-xxx-api-ts-client/Generated';
 
 const configOptions: ConfigOptions = {
   clientId: 'clientId',
