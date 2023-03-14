@@ -21,7 +21,7 @@ describe('Client Test (staging)', () => {
         Xxxapi
           .getXxxCollection()
           .then((data) => {
-        	//testcase
+        	  // testcase
           })
           .catch((error) => done(error));
       })
