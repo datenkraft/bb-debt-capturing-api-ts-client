@@ -15,24 +15,24 @@ describe("Client Test (staging)", () => {
       configOptions,
       "https://debt-capturing-api.staging.backbone.datenkraft.info/v1"
     )
-      .then((config) => {
-        const authRoleApi = new AuthRoleApi(config);
+    .then((config) => {
+      const authRoleApi = new AuthRoleApi(config);
 
-        authRoleApi
-          .getAuthRoleCollection()
-          .then(({ data: response }) => {
-            if (response instanceof Array) {
-              expect(response).toContainEqual({
-                roleCode: "bb-debt-capturing-api/auth_access-management",
-                name: "Role for access management",
-              });
-              done();
-            } else {
-              done("Auth Role Collection not found");
-            }
-          })
-          .catch((error) => done(error));
+      authRoleApi
+      .getAuthRoleCollection()
+      .then(({ data: response }) => {
+        if (response instanceof Array) {
+          expect(response).toContainEqual({
+            roleCode: "bb-debt-capturing-api/auth_access-management",
+            name: "Role for access management",
+          });
+          done();
+        } else {
+          done("Auth Role Collection not found");
+        }
       })
       .catch((error) => done(error));
+    })
+    .catch((error) => done(error));
   });
 });
