@@ -27,8 +27,9 @@ describe("Client Test (staging)", () => {
                 name: "Role for access management",
               });
               done();
+            } else {
+              fail("Auth Role Collection not found");
             }
-            fail("Auth Role Collection not found");
           })
           .catch((error) => done(error));
       })
