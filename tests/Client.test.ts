@@ -28,6 +28,7 @@ describe("Client Test (staging)", () => {
               });
               done();
             }
+            fail("Auth Role Collection not found");
           })
           .catch((error) => done(error));
       })
