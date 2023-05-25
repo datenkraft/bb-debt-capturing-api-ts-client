@@ -13,30 +13,24 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AuditLog } from './audit-log';
+// May contain unused imports in some cases
+// @ts-ignore
+import { AuditLogCollectionAllOf } from './audit-log-collection-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
 
 /**
- * 
+ * @type AuditLogCollection
+ * A collection of audit log entries
  * @export
- * @interface CollectionPagination
  */
-export interface CollectionPagination {
-    /**
-     * The page contained in this collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'page'?: number;
-    /**
-     * The page size used for reading the collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'pageSize'?: number;
-    /**
-     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'totalCount'?: number | null;
-}
+export type AuditLogCollection = AuditLogCollectionAllOf & Collection;
+
 
