@@ -13,30 +13,24 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Invoice } from './invoice';
+// May contain unused imports in some cases
+// @ts-ignore
+import { InvoiceCollectionAllOf } from './invoice-collection-all-of';
 
 /**
- * 
+ * @type InvoiceCollection
+ * A collection of invoices
  * @export
- * @interface CollectionPagination
  */
-export interface CollectionPagination {
-    /**
-     * The page contained in this collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'page'?: number;
-    /**
-     * The page size used for reading the collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'pageSize'?: number;
-    /**
-     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'totalCount'?: number | null;
-}
+export type InvoiceCollection = Collection & InvoiceCollectionAllOf;
+
 

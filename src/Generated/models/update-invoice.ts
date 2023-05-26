@@ -17,26 +17,14 @@
 /**
  * 
  * @export
- * @interface CollectionPagination
+ * @interface UpdateInvoice
  */
-export interface CollectionPagination {
+export interface UpdateInvoice {
     /**
-     * The page contained in this collection.
-     * @type {number}
-     * @memberof CollectionPagination
+     * The invoice number. Once set, not nullable anymore.
+     * @type {string}
+     * @memberof UpdateInvoice
      */
-    'page'?: number;
-    /**
-     * The page size used for reading the collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'pageSize'?: number;
-    /**
-     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'totalCount'?: number | null;
+    'invoiceNumber': string;
 }
 

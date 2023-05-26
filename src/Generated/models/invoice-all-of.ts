@@ -17,26 +17,28 @@
 /**
  * 
  * @export
- * @interface CollectionPagination
+ * @interface InvoiceAllOf
  */
-export interface CollectionPagination {
+export interface InvoiceAllOf {
     /**
-     * The page contained in this collection.
-     * @type {number}
-     * @memberof CollectionPagination
+     * Invoice id
+     * @type {string}
+     * @memberof InvoiceAllOf
      */
-    'page'?: number;
+    'invoiceId'?: string;
     /**
-     * The page size used for reading the collection.
-     * @type {number}
-     * @memberof CollectionPagination
+     * The invoice status with the following possible values: - processing: only initially set before the DebtLineItems have been linked with the invoice. - completed: all DebtLineItems have been linked to the invoice.                     
+     * @type {string}
+     * @memberof InvoiceAllOf
      */
-    'pageSize'?: number;
-    /**
-     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'totalCount'?: number | null;
+    'invoiceStatus'?: InvoiceAllOfInvoiceStatusEnum;
 }
+
+export const InvoiceAllOfInvoiceStatusEnum = {
+    Processing: 'processing',
+    Completed: 'completed'
+} as const;
+
+export type InvoiceAllOfInvoiceStatusEnum = typeof InvoiceAllOfInvoiceStatusEnum[keyof typeof InvoiceAllOfInvoiceStatusEnum];
+
 

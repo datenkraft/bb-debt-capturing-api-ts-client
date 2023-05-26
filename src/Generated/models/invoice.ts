@@ -13,30 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { BaseInvoice } from './base-invoice';
+// May contain unused imports in some cases
+// @ts-ignore
+import { InvoiceAllOf } from './invoice-all-of';
 
 /**
- * 
+ * @type Invoice
  * @export
- * @interface CollectionPagination
  */
-export interface CollectionPagination {
-    /**
-     * The page contained in this collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'page'?: number;
-    /**
-     * The page size used for reading the collection.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'pageSize'?: number;
-    /**
-     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode.
-     * @type {number}
-     * @memberof CollectionPagination
-     */
-    'totalCount'?: number | null;
-}
+export type Invoice = BaseInvoice & InvoiceAllOf;
+
 

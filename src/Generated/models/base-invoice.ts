@@ -17,14 +17,26 @@
 /**
  * 
  * @export
- * @interface PatchDebtLineItemCollectionRequest
+ * @interface BaseInvoice
  */
-export interface PatchDebtLineItemCollectionRequest {
+export interface BaseInvoice {
     /**
-     * invoiceNumber
+     * Project id
      * @type {string}
-     * @memberof PatchDebtLineItemCollectionRequest
+     * @memberof BaseInvoice
      */
-    'invoiceNumber'?: string;
+    'projectId': string;
+    /**
+     * The invoice number, may be null.
+     * @type {string}
+     * @memberof BaseInvoice
+     */
+    'invoiceNumber': string | null;
+    /**
+     * The invoice includes all DebtLineItems with a usageStart and usageEnd date less or equal than the cutoff date, which existed and were not already invoiced at the time of processing the invoice.
+     * @type {string}
+     * @memberof BaseInvoice
+     */
+    'cutoffDate': string;
 }
 

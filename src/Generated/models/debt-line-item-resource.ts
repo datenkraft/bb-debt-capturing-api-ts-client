@@ -66,11 +66,11 @@ export interface DebtLineItemResource {
      */
     'priceTotal'?: DebtLineItemResourcePriceTotal | null;
     /**
-     * invoiceNumber
+     * invoiceId
      * @type {string}
      * @memberof DebtLineItemResource
      */
-    'invoiceNumber'?: string | null;
+    'invoiceId'?: string | null;
     /**
      * Unit
      * @type {string}

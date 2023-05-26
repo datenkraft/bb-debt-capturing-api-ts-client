@@ -28,8 +28,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { DebtLineItemResource } from '../models';
 // @ts-ignore
 import { ErrorResponse } from '../models';
-// @ts-ignore
-import { PatchDebtLineItemCollectionRequest } from '../models';
 /**
  * DebtLineItemApi - axios parameter creator
  * @export
@@ -84,10 +82,11 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
          * @param {string} filterProjectId projectId filter
          * @param {string} filterDateFrom dateFrom filter
          * @param {string} filterDateTo dateTo filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollection: async (filterProjectId: string, filterDateFrom: string, filterDateTo: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDebtLineItemCollection: async (filterProjectId: string, filterDateFrom: string, filterDateTo: string, filterInvoiceId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getDebtLineItemCollection', 'filterProjectId', filterProjectId)
             // verify required parameter 'filterDateFrom' is not null or undefined
@@ -130,128 +129,15 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
                     filterDateTo;
             }
 
+            if (filterInvoiceId !== undefined) {
+                localVarQueryParameter['filter[invoiceId]'] = filterInvoiceId;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update a debtLineItem by debtLineItemId
-         * @summary Update a debtLineItem by debtLineItemId
-         * @param {string} debtLineItemId debtLineItemId
-         * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchDebtLineItem: async (debtLineItemId: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'debtLineItemId' is not null or undefined
-            assertParamExists('patchDebtLineItem', 'debtLineItemId', debtLineItemId)
-            // verify required parameter 'patchDebtLineItemCollectionRequest' is not null or undefined
-            assertParamExists('patchDebtLineItem', 'patchDebtLineItemCollectionRequest', patchDebtLineItemCollectionRequest)
-            const localVarPath = `/debt-line-item/{debtLineItemId}`
-                .replace(`{${"debtLineItemId"}}`, encodeURIComponent(String(debtLineItemId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchDebtLineItemCollectionRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-         * @summary Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-         * @param {string} filterProjectId projectId filter
-         * @param {string} filterDateFrom dateFrom filter
-         * @param {string} filterDateTo dateTo filter
-         * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchDebtLineItemCollection: async (filterProjectId: string, filterDateFrom: string, filterDateTo: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'filterProjectId' is not null or undefined
-            assertParamExists('patchDebtLineItemCollection', 'filterProjectId', filterProjectId)
-            // verify required parameter 'filterDateFrom' is not null or undefined
-            assertParamExists('patchDebtLineItemCollection', 'filterDateFrom', filterDateFrom)
-            // verify required parameter 'filterDateTo' is not null or undefined
-            assertParamExists('patchDebtLineItemCollection', 'filterDateTo', filterDateTo)
-            // verify required parameter 'patchDebtLineItemCollectionRequest' is not null or undefined
-            assertParamExists('patchDebtLineItemCollection', 'patchDebtLineItemCollectionRequest', patchDebtLineItemCollectionRequest)
-            const localVarPath = `/debt-line-item`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (filterProjectId !== undefined) {
-                localVarQueryParameter['filter[projectId]'] = filterProjectId;
-            }
-
-            if (filterDateFrom !== undefined) {
-                localVarQueryParameter['filter[dateFrom]'] = (filterDateFrom as any instanceof Date) ?
-                    (filterDateFrom as any).toISOString() :
-                    filterDateFrom;
-            }
-
-            if (filterDateTo !== undefined) {
-                localVarQueryParameter['filter[dateTo]'] = (filterDateTo as any instanceof Date) ?
-                    (filterDateTo as any).toISOString() :
-                    filterDateTo;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchDebtLineItemCollectionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -285,37 +171,12 @@ export const DebtLineItemApiFp = function(configuration?: Configuration) {
          * @param {string} filterProjectId projectId filter
          * @param {string} filterDateFrom dateFrom filter
          * @param {string} filterDateTo dateTo filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DebtLineItemResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Update a debtLineItem by debtLineItemId
-         * @summary Update a debtLineItem by debtLineItemId
-         * @param {string} debtLineItemId debtLineItemId
-         * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async patchDebtLineItem(debtLineItemId: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemResource>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.patchDebtLineItem(debtLineItemId, patchDebtLineItemCollectionRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-         * @summary Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-         * @param {string} filterProjectId projectId filter
-         * @param {string} filterDateFrom dateFrom filter
-         * @param {string} filterDateTo dateTo filter
-         * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async patchDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DebtLineItemResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.patchDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, patchDebtLineItemCollectionRequest, options);
+        async getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, filterInvoiceId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DebtLineItemResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -344,35 +205,12 @@ export const DebtLineItemApiFactory = function (configuration?: Configuration, b
          * @param {string} filterProjectId projectId filter
          * @param {string} filterDateFrom dateFrom filter
          * @param {string} filterDateTo dateTo filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: any): AxiosPromise<Array<DebtLineItemResource>> {
-            return localVarFp.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Update a debtLineItem by debtLineItemId
-         * @summary Update a debtLineItem by debtLineItemId
-         * @param {string} debtLineItemId debtLineItemId
-         * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchDebtLineItem(debtLineItemId: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: any): AxiosPromise<DebtLineItemResource> {
-            return localVarFp.patchDebtLineItem(debtLineItemId, patchDebtLineItemCollectionRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-         * @summary Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-         * @param {string} filterProjectId projectId filter
-         * @param {string} filterDateFrom dateFrom filter
-         * @param {string} filterDateTo dateTo filter
-         * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: any): AxiosPromise<Array<DebtLineItemResource>> {
-            return localVarFp.patchDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, patchDebtLineItemCollectionRequest, options).then((request) => request(axios, basePath));
+        getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, filterInvoiceId?: string, options?: any): AxiosPromise<Array<DebtLineItemResource>> {
+            return localVarFp.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -399,35 +237,12 @@ export interface DebtLineItemApiInterface {
      * @param {string} filterProjectId projectId filter
      * @param {string} filterDateFrom dateFrom filter
      * @param {string} filterDateTo dateTo filter
+     * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebtLineItemApiInterface
      */
-    getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): AxiosPromise<Array<DebtLineItemResource>>;
-
-    /**
-     * Update a debtLineItem by debtLineItemId
-     * @summary Update a debtLineItem by debtLineItemId
-     * @param {string} debtLineItemId debtLineItemId
-     * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebtLineItemApiInterface
-     */
-    patchDebtLineItem(debtLineItemId: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemResource>;
-
-    /**
-     * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-     * @summary Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-     * @param {string} filterProjectId projectId filter
-     * @param {string} filterDateFrom dateFrom filter
-     * @param {string} filterDateTo dateTo filter
-     * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebtLineItemApiInterface
-     */
-    patchDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: AxiosRequestConfig): AxiosPromise<Array<DebtLineItemResource>>;
+    getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, filterInvoiceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<DebtLineItemResource>>;
 
 }
 
@@ -456,39 +271,12 @@ export class DebtLineItemApi extends BaseAPI implements DebtLineItemApiInterface
      * @param {string} filterProjectId projectId filter
      * @param {string} filterDateFrom dateFrom filter
      * @param {string} filterDateTo dateTo filter
+     * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebtLineItemApi
      */
-    public getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig) {
-        return DebtLineItemApiFp(this.configuration).getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Update a debtLineItem by debtLineItemId
-     * @summary Update a debtLineItem by debtLineItemId
-     * @param {string} debtLineItemId debtLineItemId
-     * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebtLineItemApi
-     */
-    public patchDebtLineItem(debtLineItemId: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: AxiosRequestConfig) {
-        return DebtLineItemApiFp(this.configuration).patchDebtLineItem(debtLineItemId, patchDebtLineItemCollectionRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-     * @summary Update debtLineItems by projectId and time range where the invoiceNumber is not already set
-     * @param {string} filterProjectId projectId filter
-     * @param {string} filterDateFrom dateFrom filter
-     * @param {string} filterDateTo dateTo filter
-     * @param {PatchDebtLineItemCollectionRequest} patchDebtLineItemCollectionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DebtLineItemApi
-     */
-    public patchDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, patchDebtLineItemCollectionRequest: PatchDebtLineItemCollectionRequest, options?: AxiosRequestConfig) {
-        return DebtLineItemApiFp(this.configuration).patchDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, patchDebtLineItemCollectionRequest, options).then((request) => request(this.axios, this.basePath));
+    public getDebtLineItemCollection(filterProjectId: string, filterDateFrom: string, filterDateTo: string, filterInvoiceId?: string, options?: AxiosRequestConfig) {
+        return DebtLineItemApiFp(this.configuration).getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(this.axios, this.basePath));
     }
 }
