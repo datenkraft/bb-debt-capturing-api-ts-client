@@ -33,26 +33,19 @@ import { ErrorResponse } from '../models';
 export const ReportApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Get debtLineItems file export by projectId and time range
-         * @summary Get debtLineItems file export by projectId and time range
-         * @param {'xlsx' | 'csv'} format Export file format
-         * @param {string} filterProjectId projectId filter
-         * @param {string} filterDateFrom dateFrom filter
-         * @param {string} filterDateTo dateTo filter
+         * Get debtLineItems file export by projectId and time range.         The file type is controlled by the accept header.
+         * @summary Get debtLineItems file export.
+         * @param {string} filterProjectId This filter restricts the data by the project id.
+         * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollectionReport: async (format: 'xlsx' | 'csv', filterProjectId: string, filterDateFrom: string, filterDateTo: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('getDebtLineItemCollectionReport', 'format', format)
+        getDebtLineItemCollectionReport: async (filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getDebtLineItemCollectionReport', 'filterProjectId', filterProjectId)
-            // verify required parameter 'filterDateFrom' is not null or undefined
-            assertParamExists('getDebtLineItemCollectionReport', 'filterDateFrom', filterDateFrom)
-            // verify required parameter 'filterDateTo' is not null or undefined
-            assertParamExists('getDebtLineItemCollectionReport', 'filterDateTo', filterDateTo)
-            const localVarPath = `/report/debt-line-item.{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            const localVarPath = `/report/debt-line-item`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -88,6 +81,10 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
                     filterDateTo;
             }
 
+            if (filterInvoiceId !== undefined) {
+                localVarQueryParameter['filter[invoiceId]'] = filterInvoiceId;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -100,23 +97,19 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Get a list of undefined shipping costs in the specified time frame and the requested format
-         * @summary Get a list of undefined shipping costs in the specified time frame
-         * @param {'xlsx' | 'csv'} format Export file format
-         * @param {string} filterDateFrom dateFrom filter in UTC
-         * @param {string} filterDateTo dateTo filter in UTC
+         * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
+         * @summary Get a list of undefined shipping costs in the specified time frame.
+         * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
+         * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUndefinedShippingCostsCollectionReport: async (format: 'xlsx' | 'csv', filterDateFrom: string, filterDateTo: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('getUndefinedShippingCostsCollectionReport', 'format', format)
+        getUndefinedShippingCostsCollectionReport: async (filterDateFrom: string, filterDateTo: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterDateFrom' is not null or undefined
             assertParamExists('getUndefinedShippingCostsCollectionReport', 'filterDateFrom', filterDateFrom)
             // verify required parameter 'filterDateTo' is not null or undefined
             assertParamExists('getUndefinedShippingCostsCollectionReport', 'filterDateTo', filterDateTo)
-            const localVarPath = `/report/undefined-shipping-costs.{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            const localVarPath = `/report/undefined-shipping-costs`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -170,30 +163,29 @@ export const ReportApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ReportApiAxiosParamCreator(configuration)
     return {
         /**
-         * Get debtLineItems file export by projectId and time range
-         * @summary Get debtLineItems file export by projectId and time range
-         * @param {'xlsx' | 'csv'} format Export file format
-         * @param {string} filterProjectId projectId filter
-         * @param {string} filterDateFrom dateFrom filter
-         * @param {string} filterDateTo dateTo filter
+         * Get debtLineItems file export by projectId and time range.         The file type is controlled by the accept header.
+         * @summary Get debtLineItems file export.
+         * @param {string} filterProjectId This filter restricts the data by the project id.
+         * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDebtLineItemCollectionReport(format: 'xlsx' | 'csv', filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollectionReport(format, filterProjectId, filterDateFrom, filterDateTo, options);
+        async getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a list of undefined shipping costs in the specified time frame and the requested format
-         * @summary Get a list of undefined shipping costs in the specified time frame
-         * @param {'xlsx' | 'csv'} format Export file format
-         * @param {string} filterDateFrom dateFrom filter in UTC
-         * @param {string} filterDateTo dateTo filter in UTC
+         * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
+         * @summary Get a list of undefined shipping costs in the specified time frame.
+         * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
+         * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUndefinedShippingCostsCollectionReport(format: 'xlsx' | 'csv', filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUndefinedShippingCostsCollectionReport(format, filterDateFrom, filterDateTo, options);
+        async getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUndefinedShippingCostsCollectionReport(filterDateFrom, filterDateTo, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -207,29 +199,28 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = ReportApiFp(configuration)
     return {
         /**
-         * Get debtLineItems file export by projectId and time range
-         * @summary Get debtLineItems file export by projectId and time range
-         * @param {'xlsx' | 'csv'} format Export file format
-         * @param {string} filterProjectId projectId filter
-         * @param {string} filterDateFrom dateFrom filter
-         * @param {string} filterDateTo dateTo filter
+         * Get debtLineItems file export by projectId and time range.         The file type is controlled by the accept header.
+         * @summary Get debtLineItems file export.
+         * @param {string} filterProjectId This filter restricts the data by the project id.
+         * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollectionReport(format: 'xlsx' | 'csv', filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: any): AxiosPromise<string> {
-            return localVarFp.getDebtLineItemCollectionReport(format, filterProjectId, filterDateFrom, filterDateTo, options).then((request) => request(axios, basePath));
+        getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a list of undefined shipping costs in the specified time frame and the requested format
-         * @summary Get a list of undefined shipping costs in the specified time frame
-         * @param {'xlsx' | 'csv'} format Export file format
-         * @param {string} filterDateFrom dateFrom filter in UTC
-         * @param {string} filterDateTo dateTo filter in UTC
+         * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
+         * @summary Get a list of undefined shipping costs in the specified time frame.
+         * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
+         * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUndefinedShippingCostsCollectionReport(format: 'xlsx' | 'csv', filterDateFrom: string, filterDateTo: string, options?: any): AxiosPromise<void> {
-            return localVarFp.getUndefinedShippingCostsCollectionReport(format, filterDateFrom, filterDateTo, options).then((request) => request(axios, basePath));
+        getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: any): AxiosPromise<string> {
+            return localVarFp.getUndefinedShippingCostsCollectionReport(filterDateFrom, filterDateTo, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -241,29 +232,28 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
  */
 export interface ReportApiInterface {
     /**
-     * Get debtLineItems file export by projectId and time range
-     * @summary Get debtLineItems file export by projectId and time range
-     * @param {'xlsx' | 'csv'} format Export file format
-     * @param {string} filterProjectId projectId filter
-     * @param {string} filterDateFrom dateFrom filter
-     * @param {string} filterDateTo dateTo filter
+     * Get debtLineItems file export by projectId and time range.         The file type is controlled by the accept header.
+     * @summary Get debtLineItems file export.
+     * @param {string} filterProjectId This filter restricts the data by the project id.
+     * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+     * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+     * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getDebtLineItemCollectionReport(format: 'xlsx' | 'csv', filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): AxiosPromise<string>;
+    getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): AxiosPromise<string>;
 
     /**
-     * Get a list of undefined shipping costs in the specified time frame and the requested format
-     * @summary Get a list of undefined shipping costs in the specified time frame
-     * @param {'xlsx' | 'csv'} format Export file format
-     * @param {string} filterDateFrom dateFrom filter in UTC
-     * @param {string} filterDateTo dateTo filter in UTC
+     * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
+     * @summary Get a list of undefined shipping costs in the specified time frame.
+     * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
+     * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getUndefinedShippingCostsCollectionReport(format: 'xlsx' | 'csv', filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): AxiosPromise<void>;
+    getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): AxiosPromise<string>;
 
 }
 
@@ -275,31 +265,30 @@ export interface ReportApiInterface {
  */
 export class ReportApi extends BaseAPI implements ReportApiInterface {
     /**
-     * Get debtLineItems file export by projectId and time range
-     * @summary Get debtLineItems file export by projectId and time range
-     * @param {'xlsx' | 'csv'} format Export file format
-     * @param {string} filterProjectId projectId filter
-     * @param {string} filterDateFrom dateFrom filter
-     * @param {string} filterDateTo dateTo filter
+     * Get debtLineItems file export by projectId and time range.         The file type is controlled by the accept header.
+     * @summary Get debtLineItems file export.
+     * @param {string} filterProjectId This filter restricts the data by the project id.
+     * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+     * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+     * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getDebtLineItemCollectionReport(format: 'xlsx' | 'csv', filterProjectId: string, filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getDebtLineItemCollectionReport(format, filterProjectId, filterDateFrom, filterDateTo, options).then((request) => request(this.axios, this.basePath));
+    public getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Get a list of undefined shipping costs in the specified time frame and the requested format
-     * @summary Get a list of undefined shipping costs in the specified time frame
-     * @param {'xlsx' | 'csv'} format Export file format
-     * @param {string} filterDateFrom dateFrom filter in UTC
-     * @param {string} filterDateTo dateTo filter in UTC
+     * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
+     * @summary Get a list of undefined shipping costs in the specified time frame.
+     * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
+     * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getUndefinedShippingCostsCollectionReport(format: 'xlsx' | 'csv', filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getUndefinedShippingCostsCollectionReport(format, filterDateFrom, filterDateTo, options).then((request) => request(this.axios, this.basePath));
+    public getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getUndefinedShippingCostsCollectionReport(filterDateFrom, filterDateTo, options).then((request) => request(this.axios, this.basePath));
     }
 }
