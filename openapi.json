@@ -2391,9 +2391,9 @@
                         }
                     },
                     {
-                        "name": "filter[invoiceNumber]",
+                        "name": "filter[invoiceId]",
                         "in": "query",
-                        "description": "Comma delimited string of invoice numbers",
+                        "description": "Comma delimited string of invoice ids",
                         "schema": {
                             "type": "string"
                         }
