@@ -159,76 +159,6 @@
                 ]
             }
         },
-        "/auth/permission": {
-            "get": {
-                "tags": [
-                    "auth-permission"
-                ],
-                "summary": "Get all permissions from this resource server",
-                "description": "Get all permissions from this resource server",
-                "operationId": "getAuthPermissionCollection",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/getAuthPermissionCollectionResponse"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "oAuthAuthorization": []
-                    },
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
         "/auth/permission-role": {
             "get": {
                 "tags": [
@@ -489,21 +419,21 @@
                 ]
             }
         },
-        "/auth/role": {
+        "/auth/permission": {
             "get": {
                 "tags": [
-                    "auth-role"
+                    "auth-permission"
                 ],
-                "summary": "Get all available roles from this resource server",
-                "description": "Get all available roles from this resource server",
-                "operationId": "getAuthRoleCollection",
+                "summary": "Get all permissions from this resource server",
+                "description": "Get all permissions from this resource server",
+                "operationId": "getAuthPermissionCollection",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/authRoleCollection"
+                                    "$ref": "#/components/schemas/getAuthPermissionCollectionResponse"
                                 }
                             }
                         }
@@ -810,6 +740,76 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/auth/role": {
+            "get": {
+                "tags": [
+                    "auth-role"
+                ],
+                "summary": "Get all available roles from this resource server",
+                "description": "Get all available roles from this resource server",
+                "operationId": "getAuthRoleCollection",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/authRoleCollection"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1271,8 +1271,7 @@
                     {
                         "name": "filter[dateFrom]",
                         "in": "query",
-                        "description": "dateFrom filter",
-                        "required": true,
+                        "description": "dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is\n           given.",
                         "schema": {
                             "type": "string",
                             "format": "date-time"
@@ -1281,8 +1280,7 @@
                     {
                         "name": "filter[dateTo]",
                         "in": "query",
-                        "description": "dateTo filter",
-                        "required": true,
+                        "description": "dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is\n           given.",
                         "schema": {
                             "type": "string",
                             "format": "date-time"
@@ -2187,32 +2185,19 @@
                 ]
             }
         },
-        "/report/debt-line-item.{format}": {
+        "/report/debt-line-item": {
             "get": {
                 "tags": [
                     "report"
                 ],
-                "summary": "Get debtLineItems file export by projectId and time range",
-                "description": "Get debtLineItems file export by projectId and time range",
+                "summary": "Get debtLineItems file export.",
+                "description": "Get debtLineItems file export by projectId and time range.\n        The file type is controlled by the accept header.",
                 "operationId": "getDebtLineItemCollectionReport",
                 "parameters": [
                     {
-                        "name": "format",
-                        "in": "path",
-                        "description": "Export file format",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "xlsx",
-                                "csv"
-                            ]
-                        }
-                    },
-                    {
                         "name": "filter[projectId]",
                         "in": "query",
-                        "description": "projectId filter",
+                        "description": "This filter restricts the data by the project id.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -2221,21 +2206,29 @@
                     {
                         "name": "filter[dateFrom]",
                         "in": "query",
-                        "description": "dateFrom filter",
-                        "required": true,
+                        "description": "This filter enables retrieval of data starting from a specified date in UTC.\n                The filters dateFrom and dateTo are required unless an invoiceId filter is given.",
                         "schema": {
                             "type": "string",
                             "format": "date-time"
-                        }
+                        },
+                        "example": "2023-01-01T00:00:00+00:00"
                     },
                     {
                         "name": "filter[dateTo]",
                         "in": "query",
-                        "description": "dateTo filter",
-                        "required": true,
+                        "description": "This filter enables retrieval of data ending up to a specified date in UTC.\n                The filters dateFrom and dateTo are required unless an invoiceId filter is given.",
                         "schema": {
                             "type": "string",
                             "format": "date-time"
+                        },
+                        "example": "2023-01-31T00:00:00+00:00"
+                    },
+                    {
+                        "name": "filter[invoiceId]",
+                        "in": "query",
+                        "description": "This filter restricts the data by the invoice id.",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -2248,9 +2241,187 @@
                                     "type": "string"
                                 }
                             },
-                            "text/xlsx": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
                                 "schema": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Invalid or missing format",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/report/debt-line-item/aggregated": {
+            "get": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "",
+                "description": "",
+                "operationId": "getReportDebtLineItemCollectionAggregated",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 20.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.\n                ",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter[projectId]",
+                        "in": "query",
+                        "description": "Mandatory filter for the project id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[usageStart]",
+                        "in": "query",
+                        "description": "Start date of the usage (Y-m-d)",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "filter[usageEnd]",
+                        "in": "query",
+                        "description": "End date of the usage (Y-m-d)",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "filter[invoiceNumber]",
+                        "in": "query",
+                        "description": "Comma delimited string of invoice numbers",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[metaKey]",
+                        "in": "query",
+                        "description": "Key of the meta field (required with metaValue)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[metaValue]",
+                        "in": "query",
+                        "description": "Value of the meta field (required with metaKey)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/debtLineItemAggregatedCollection"
                                 }
                             }
                         }
@@ -2286,7 +2457,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2296,7 +2467,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2316,57 +2487,64 @@
                 ]
             }
         },
-        "/report/undefined-shipping-costs.{format}": {
+        "/report/undefined-shipping-costs": {
             "get": {
                 "tags": [
                     "report"
                 ],
-                "summary": "Get a list of undefined shipping costs in the specified time frame",
-                "description": "Get a list of undefined shipping costs in the specified time frame and the requested format",
+                "summary": "Get a list of undefined shipping costs in the specified time frame.",
+                "description": "Get a list of undefined shipping costs in the specified time frame and the requested format.\n        The file type is controlled by the accept header.",
                 "operationId": "getUndefinedShippingCostsCollectionReport",
                 "parameters": [
                     {
-                        "name": "format",
-                        "in": "path",
-                        "description": "Export file format",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "xlsx",
-                                "csv"
-                            ]
-                        }
-                    },
-                    {
                         "name": "filter[dateFrom]",
                         "in": "query",
-                        "description": "dateFrom filter in UTC",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "example": "2022-01-01"
-                    },
-                    {
-                        "name": "filter[dateTo]",
-                        "in": "query",
-                        "description": "dateTo filter in UTC",
+                        "description": "This filter enables retrieval of data starting from a specified date in UTC.",
                         "required": true,
                         "schema": {
                             "type": "string",
                             "format": "date"
                         },
                         "example": "2023-01-01"
+                    },
+                    {
+                        "name": "filter[dateTo]",
+                        "in": "query",
+                        "description": "This filter enables retrieval of data ending up to a specified date in UTC.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "example": "2023-01-31"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "text/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
                     },
                     "400": {
-                        "description": "Invalid format or timespan"
+                        "description": "Invalid time span",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized",
@@ -2388,8 +2566,18 @@
                             }
                         }
                     },
+                    "409": {
+                        "description": "Invalid or missing format",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2399,7 +2587,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2721,6 +2909,156 @@
                         "description": "The total number of items in the collection.\\\nNote: This can be null depending on the used paginationMode.",
                         "type": "integer",
                         "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregated": {
+                "required": [
+                    "id",
+                    "quantity",
+                    "usageStart",
+                    "usageEnd",
+                    "priceTotal",
+                    "skuUsages"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Id of the debt line item",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "description": "quantity",
+                        "type": "integer"
+                    },
+                    "usageStart": {
+                        "description": "Start time of the usage",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "usageEnd": {
+                        "description": "End time of the usage",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "priceTotal": {
+                        "$ref": "#/components/schemas/priceProperty"
+                    },
+                    "invoiceId": {
+                        "description": "Id of the invoice (internal usage)",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "invoiceNumber": {
+                        "description": "Number of the invoice",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "skuUsages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/debtLineItemAggregatedSkuUsage"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregatedCollection": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "required": [
+                            "sum"
+                        ],
+                        "properties": {
+                            "sum": {
+                                "properties": {
+                                    "priceTotal": {
+                                        "$ref": "#/components/schemas/priceProperty"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "required": [
+                            "data"
+                        ],
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/debtLineItemAggregatedSku"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "debtLineItemAggregatedSku": {
+                "required": [
+                    "skuCode",
+                    "sum",
+                    "debtLineItems"
+                ],
+                "properties": {
+                    "skuCode": {
+                        "description": "Sku Code",
+                        "type": "string"
+                    },
+                    "sum": {
+                        "$ref": "#/components/schemas/debtLineItemAggregatedSkuSum"
+                    },
+                    "debtLineItems": {
+                        "description": "Sku Code",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/debtLineItemAggregated"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregatedSkuSum": {
+                "required": [
+                    "usedCount",
+                    "priceTotal"
+                ],
+                "properties": {
+                    "usedCount": {
+                        "description": "Quantity sum of sku usages",
+                        "type": "integer"
+                    },
+                    "priceTotal": {
+                        "$ref": "#/components/schemas/priceProperty"
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregatedSkuUsage": {
+                "required": [
+                    "id",
+                    "quantity"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "sku usage id",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "description": "Quantity",
+                        "type": "integer"
+                    },
+                    "meta": {
+                        "description": "Meta - independent from meta filter",
+                        "type": "object",
                         "nullable": true
                     }
                 },

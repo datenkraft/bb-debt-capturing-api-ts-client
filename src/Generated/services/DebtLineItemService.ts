@@ -12,8 +12,10 @@ export class DebtLineItemService {
      * Get debtLineItems by projectId and time range
      * Get debtLineItems by projectId and time range
      * @param filterProjectId projectId filter
-     * @param filterDateFrom dateFrom filter
-     * @param filterDateTo dateTo filter
+     * @param filterDateFrom dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is
+     * given.
+     * @param filterDateTo dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is
+     * given.
      * @param filterInvoiceId invoiceId filter
      * @returns getDebtLineItemCollectionResponse OK
      * @returns errorResponse Unexpected error
@@ -21,8 +23,8 @@ export class DebtLineItemService {
      */
     public static async getDebtLineItemCollection(
         filterProjectId: string,
-        filterDateFrom: string,
-        filterDateTo: string,
+        filterDateFrom?: string,
+        filterDateTo?: string,
         filterInvoiceId?: string,
     ): Promise<getDebtLineItemCollectionResponse | errorResponse> {
         const result = await __request({
