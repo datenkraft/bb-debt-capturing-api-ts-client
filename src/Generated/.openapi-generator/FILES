@@ -27,6 +27,14 @@ models/auth-role-resource.ts
 models/base-invoice.ts
 models/collection-pagination.ts
 models/collection.ts
+models/debt-line-item-aggregated-collection-all-of-sum.ts
+models/debt-line-item-aggregated-collection-all-of.ts
+models/debt-line-item-aggregated-collection-all-of1.ts
+models/debt-line-item-aggregated-collection.ts
+models/debt-line-item-aggregated-sku-sum.ts
+models/debt-line-item-aggregated-sku-usage.ts
+models/debt-line-item-aggregated-sku.ts
+models/debt-line-item-aggregated.ts
 models/debt-line-item-resource-price-total.ts
 models/debt-line-item-resource.ts
 models/error-response.ts

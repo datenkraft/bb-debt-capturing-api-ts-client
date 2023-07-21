@@ -2320,6 +2320,173 @@
                 ]
             }
         },
+        "/report/debt-line-item/aggregated": {
+            "get": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "",
+                "description": "",
+                "operationId": "getReportDebtLineItemCollectionAggregated",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 20.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.\n                ",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter[projectId]",
+                        "in": "query",
+                        "description": "Mandatory filter for the project id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[usageStart]",
+                        "in": "query",
+                        "description": "Start date of the usage (Y-m-d)",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "filter[usageEnd]",
+                        "in": "query",
+                        "description": "End date of the usage (Y-m-d)",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "filter[invoiceNumber]",
+                        "in": "query",
+                        "description": "Comma delimited string of invoice numbers",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[metaKey]",
+                        "in": "query",
+                        "description": "Key of the meta field (required with metaValue)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[metaValue]",
+                        "in": "query",
+                        "description": "Value of the meta field (required with metaKey)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/debtLineItemAggregatedCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/report/undefined-shipping-costs": {
             "get": {
                 "tags": [
@@ -2742,6 +2909,156 @@
                         "description": "The total number of items in the collection.\\\nNote: This can be null depending on the used paginationMode.",
                         "type": "integer",
                         "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregated": {
+                "required": [
+                    "id",
+                    "quantity",
+                    "usageStart",
+                    "usageEnd",
+                    "priceTotal",
+                    "skuUsages"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Id of the debt line item",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "description": "quantity",
+                        "type": "integer"
+                    },
+                    "usageStart": {
+                        "description": "Start time of the usage",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "usageEnd": {
+                        "description": "End time of the usage",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "priceTotal": {
+                        "$ref": "#/components/schemas/priceProperty"
+                    },
+                    "invoiceId": {
+                        "description": "Id of the invoice (internal usage)",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "invoiceNumber": {
+                        "description": "Number of the invoice",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "skuUsages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/debtLineItemAggregatedSkuUsage"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregatedCollection": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "required": [
+                            "sum"
+                        ],
+                        "properties": {
+                            "sum": {
+                                "properties": {
+                                    "priceTotal": {
+                                        "$ref": "#/components/schemas/priceProperty"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "required": [
+                            "data"
+                        ],
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/debtLineItemAggregatedSku"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "debtLineItemAggregatedSku": {
+                "required": [
+                    "skuCode",
+                    "sum",
+                    "debtLineItems"
+                ],
+                "properties": {
+                    "skuCode": {
+                        "description": "Sku Code",
+                        "type": "string"
+                    },
+                    "sum": {
+                        "$ref": "#/components/schemas/debtLineItemAggregatedSkuSum"
+                    },
+                    "debtLineItems": {
+                        "description": "Sku Code",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/debtLineItemAggregated"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregatedSkuSum": {
+                "required": [
+                    "usedCount",
+                    "priceTotal"
+                ],
+                "properties": {
+                    "usedCount": {
+                        "description": "Quantity sum of sku usages",
+                        "type": "integer"
+                    },
+                    "priceTotal": {
+                        "$ref": "#/components/schemas/priceProperty"
+                    }
+                },
+                "type": "object"
+            },
+            "debtLineItemAggregatedSkuUsage": {
+                "required": [
+                    "id",
+                    "quantity"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "sku usage id",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "description": "Quantity",
+                        "type": "integer"
+                    },
+                    "meta": {
+                        "description": "Meta - independent from meta filter",
+                        "type": "object",
                         "nullable": true
                     }
                 },
