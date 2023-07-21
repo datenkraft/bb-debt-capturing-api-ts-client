@@ -25,6 +25,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { DebtLineItemAggregatedCollection } from '../models';
+// @ts-ignore
 import { ErrorResponse } from '../models';
 /**
  * ReportApi - axios parameter creator
@@ -83,6 +85,95 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (filterInvoiceId !== undefined) {
                 localVarQueryParameter['filter[invoiceId]'] = filterInvoiceId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 
+         * @param {string} filterProjectId Mandatory filter for the project id
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+         * @param {string} [filterInvoiceNumber] Comma delimited string of invoice numbers
+         * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceNumber?: string, filterMetaKey?: string, filterMetaValue?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'filterProjectId' is not null or undefined
+            assertParamExists('getReportDebtLineItemCollectionAggregated', 'filterProjectId', filterProjectId)
+            const localVarPath = `/report/debt-line-item/aggregated`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
+            if (filterProjectId !== undefined) {
+                localVarQueryParameter['filter[projectId]'] = filterProjectId;
+            }
+
+            if (filterUsageStart !== undefined) {
+                localVarQueryParameter['filter[usageStart]'] = (filterUsageStart as any instanceof Date) ?
+                    (filterUsageStart as any).toISOString().substr(0,10) :
+                    filterUsageStart;
+            }
+
+            if (filterUsageEnd !== undefined) {
+                localVarQueryParameter['filter[usageEnd]'] = (filterUsageEnd as any instanceof Date) ?
+                    (filterUsageEnd as any).toISOString().substr(0,10) :
+                    filterUsageEnd;
+            }
+
+            if (filterInvoiceNumber !== undefined) {
+                localVarQueryParameter['filter[invoiceNumber]'] = filterInvoiceNumber;
+            }
+
+            if (filterMetaKey !== undefined) {
+                localVarQueryParameter['filter[metaKey]'] = filterMetaKey;
+            }
+
+            if (filterMetaValue !== undefined) {
+                localVarQueryParameter['filter[metaValue]'] = filterMetaValue;
             }
 
 
@@ -177,6 +268,25 @@ export const ReportApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @summary 
+         * @param {string} filterProjectId Mandatory filter for the project id
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+         * @param {string} [filterInvoiceNumber] Comma delimited string of invoice numbers
+         * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceNumber?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterUsageStart, filterUsageEnd, filterInvoiceNumber, filterMetaKey, filterMetaValue, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
          * @summary Get a list of undefined shipping costs in the specified time frame.
          * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
@@ -212,6 +322,24 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @summary 
+         * @param {string} filterProjectId Mandatory filter for the project id
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+         * @param {string} [filterInvoiceNumber] Comma delimited string of invoice numbers
+         * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceNumber?: string, filterMetaKey?: string, filterMetaValue?: string, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
+            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterUsageStart, filterUsageEnd, filterInvoiceNumber, filterMetaKey, filterMetaValue, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
          * @summary Get a list of undefined shipping costs in the specified time frame.
          * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
@@ -243,6 +371,24 @@ export interface ReportApiInterface {
      * @memberof ReportApiInterface
      */
     getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): AxiosPromise<string>;
+
+    /**
+     * 
+     * @summary 
+     * @param {string} filterProjectId Mandatory filter for the project id
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
+     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+     * @param {string} [filterInvoiceNumber] Comma delimited string of invoice numbers
+     * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportApiInterface
+     */
+    getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceNumber?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
 
     /**
      * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
@@ -277,6 +423,26 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      */
     public getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig) {
         return ReportApiFp(this.configuration).getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 
+     * @param {string} filterProjectId Mandatory filter for the project id
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
+     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+     * @param {string} [filterInvoiceNumber] Comma delimited string of invoice numbers
+     * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportApi
+     */
+    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceNumber?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterUsageStart, filterUsageEnd, filterInvoiceNumber, filterMetaKey, filterMetaValue, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
