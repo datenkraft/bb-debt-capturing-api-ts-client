@@ -16,7 +16,7 @@ export class ReportService {
      * The filters dateFrom and dateTo are required unless an invoiceId filter is given.
      * @param filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
      * The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-     * @param filterInvoiceId This filter restricts the data by the invoice id.
+     * @param filterInvoiceIds This filter restricts the data by the invoice id.
      * @returns any OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
@@ -25,7 +25,7 @@ export class ReportService {
         filterProjectId: string,
         filterDateFrom?: string,
         filterDateTo?: string,
-        filterInvoiceId?: string,
+        filterInvoiceIds?: string,
     ): Promise<any | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -34,7 +34,7 @@ export class ReportService {
                 'filter[projectId]': filterProjectId,
                 'filter[dateFrom]': filterDateFrom,
                 'filter[dateTo]': filterDateTo,
-                'filter[invoiceId]': filterInvoiceId,
+                'filter[invoiceIds]': filterInvoiceIds,
             },
             errors: {
                 400: `Bad Request`,
@@ -55,9 +55,10 @@ export class ReportService {
      * - default: The total number of items in the collection will not be calculated.
      * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      *
+     * @param filterSkuCode Like Search for the sku code
      * @param filterUsageStart Start date of the usage (Y-m-d)
      * @param filterUsageEnd End date of the usage (Y-m-d)
-     * @param filterInvoiceId Comma delimited string of invoice ids
+     * @param filterInvoiceIds Comma delimited string of invoice ids
      * @param filterMetaKey Key of the meta field (required with metaValue)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
      * @param filterMetaValue Value of the meta field (required with metaKey)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
      * @returns debtLineItemAggregatedCollection OK
@@ -69,9 +70,10 @@ export class ReportService {
         page?: number,
         pageSize?: number,
         paginationMode: 'default' | 'totalCount' = 'default',
+        filterSkuCode?: string,
         filterUsageStart?: string,
         filterUsageEnd?: string,
-        filterInvoiceId?: string,
+        filterInvoiceIds?: string,
         filterMetaKey?: string,
         filterMetaValue?: string,
     ): Promise<debtLineItemAggregatedCollection | errorResponse> {
@@ -83,9 +85,10 @@ export class ReportService {
                 'page': page,
                 'pageSize': pageSize,
                 'paginationMode': paginationMode,
+                'filter[skuCode]': filterSkuCode,
                 'filter[usageStart]': filterUsageStart,
                 'filter[usageEnd]': filterUsageEnd,
-                'filter[invoiceId]': filterInvoiceId,
+                'filter[invoiceIds]': filterInvoiceIds,
                 'filter[metaKey]': filterMetaKey,
                 'filter[metaValue]': filterMetaValue,
             },
