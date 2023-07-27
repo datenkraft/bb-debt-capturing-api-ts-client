@@ -23,6 +23,7 @@ export type debtLineItemAggregated = {
      */
     usageEnd: string;
     priceTotal: priceProperty;
+    pricePerUnit?: priceProperty;
     /**
      * Id of the invoice (internal usage)
      */
