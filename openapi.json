@@ -1287,7 +1287,7 @@
                         }
                     },
                     {
-                        "name": "filter[invoiceId]",
+                        "name": "filter[invoiceIds]",
                         "in": "query",
                         "description": "invoiceId filter",
                         "schema": {
@@ -2224,7 +2224,7 @@
                         "example": "2023-01-31T00:00:00+00:00"
                     },
                     {
-                        "name": "filter[invoiceId]",
+                        "name": "filter[invoiceIds]",
                         "in": "query",
                         "description": "This filter restricts the data by the invoice id.",
                         "schema": {
@@ -2373,6 +2373,14 @@
                         }
                     },
                     {
+                        "name": "filter[skuCode]",
+                        "in": "query",
+                        "description": "Like Search for the sku code",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "filter[usageStart]",
                         "in": "query",
                         "description": "Start date of the usage (Y-m-d)",
@@ -2391,7 +2399,7 @@
                         }
                     },
                     {
-                        "name": "filter[invoiceId]",
+                        "name": "filter[invoiceIds]",
                         "in": "query",
                         "description": "Comma delimited string of invoice ids",
                         "schema": {
@@ -2943,6 +2951,9 @@
                         "format": "date"
                     },
                     "priceTotal": {
+                        "$ref": "#/components/schemas/priceProperty"
+                    },
+                    "pricePerUnit": {
                         "$ref": "#/components/schemas/priceProperty"
                     },
                     "invoiceId": {

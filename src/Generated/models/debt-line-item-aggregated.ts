@@ -57,6 +57,12 @@ export interface DebtLineItemAggregated {
      */
     'priceTotal': PriceProperty;
     /**
+     * 
+     * @type {PriceProperty}
+     * @memberof DebtLineItemAggregated
+     */
+    'pricePerUnit'?: PriceProperty;
+    /**
      * Id of the invoice (internal usage)
      * @type {string}
      * @memberof DebtLineItemAggregated
