@@ -32,5 +32,5 @@ export type debtLineItemAggregated = {
      * Number of the invoice
      */
     invoiceNumber?: string | null;
-    skuUsages: Array<debtLineItemAggregatedSkuUsage>;
+    skuUsages?: Array<debtLineItemAggregatedSkuUsage>;
 }
