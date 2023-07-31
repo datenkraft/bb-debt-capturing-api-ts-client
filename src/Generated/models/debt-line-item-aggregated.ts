@@ -79,6 +79,6 @@ export interface DebtLineItemAggregated {
      * @type {Array<DebtLineItemAggregatedSkuUsage>}
      * @memberof DebtLineItemAggregated
      */
-    'skuUsages': Array<DebtLineItemAggregatedSkuUsage>;
+    'skuUsages'?: Array<DebtLineItemAggregatedSkuUsage>;
 }
 
