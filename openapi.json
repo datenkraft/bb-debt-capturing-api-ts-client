@@ -2928,8 +2928,7 @@
                     "quantity",
                     "usageStart",
                     "usageEnd",
-                    "priceTotal",
-                    "skuUsages"
+                    "priceTotal"
                 ],
                 "properties": {
                     "id": {
