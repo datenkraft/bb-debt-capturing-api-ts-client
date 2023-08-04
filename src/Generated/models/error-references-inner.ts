@@ -17,23 +17,26 @@
 /**
  * 
  * @export
- * @interface GetEventSourcingReplay200Response
+ * @interface ErrorReferencesInner
  */
-export interface GetEventSourcingReplay200Response {
+export interface ErrorReferencesInner {
     /**
-     * status
+     * The key of the field causing the error
      * @type {string}
-     * @memberof GetEventSourcingReplay200Response
+     * @memberof ErrorReferencesInner
      */
-    'status'?: GetEventSourcingReplay200ResponseStatusEnum;
+    'key'?: string;
+    /**
+     * The value of the field causing the error
+     * @type {any}
+     * @memberof ErrorReferencesInner
+     */
+    'value'?: any;
+    /**
+     * The exact reference to the field causing the error
+     * @type {string}
+     * @memberof ErrorReferencesInner
+     */
+    'fieldReference'?: string | null;
 }
-
-export const GetEventSourcingReplay200ResponseStatusEnum = {
-    Active: 'active',
-    Available: 'available',
-    Locked: 'locked'
-} as const;
-
-export type GetEventSourcingReplay200ResponseStatusEnum = typeof GetEventSourcingReplay200ResponseStatusEnum[keyof typeof GetEventSourcingReplay200ResponseStatusEnum];
-
 
