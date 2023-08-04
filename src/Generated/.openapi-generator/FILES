@@ -37,6 +37,7 @@ models/debt-line-item-aggregated-sku.ts
 models/debt-line-item-aggregated.ts
 models/debt-line-item-resource-price-total.ts
 models/debt-line-item-resource.ts
+models/error-references-inner.ts
 models/error-response.ts
 models/get-event-sourcing-replay200-response.ts
 models/index.ts

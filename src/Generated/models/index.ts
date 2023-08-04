@@ -18,6 +18,7 @@ export * from './debt-line-item-aggregated-sku-sum';
 export * from './debt-line-item-aggregated-sku-usage';
 export * from './debt-line-item-resource';
 export * from './debt-line-item-resource-price-total';
+export * from './error-references-inner';
 export * from './error-response';
 export * from './get-event-sourcing-replay200-response';
 export * from './information';
