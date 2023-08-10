@@ -1634,8 +1634,8 @@
                 "tags": [
                     "eventSourcingReplay"
                 ],
-                "summary": "Execute event sourcing replay (recalculates all DebtLineItems)",
-                "description": "Execute event sourcing replay (recalculates all DebtLineItems).\n\nPlease be aware of the effects a replay involves!\n- The replay does not affect DebtLineItems with an Invoice_Id set.\n- Changes of the calculators/prices will affect non invoiced, past, events\nand therefore also the resulting DebtLineItems.\n- At the beginning/before the replay starts, every DebtLineItem,\nwhich is not invoiced yet/no Invoice_Id set, gets deleted.",
+                "summary": "Execute event sourcing replay (recalculates DebtLineItems)",
+                "description": "Execute event sourcing replay (recalculates DebtLineItems).\n\nPlease be aware of the effects a replay involves!\n- The replay does not affect DebtLineItems with an Invoice_Id set.\n- Changes of the calculators/prices will affect non invoiced, past, events\nand therefore also the resulting DebtLineItems.\n- At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set,\nget deleted.\n- If no projectIds are provided, all DebtLineItems are affected by the replay.",
                 "operationId": "postEventSourcingReplay",
                 "requestBody": {
                     "required": false,
@@ -1647,6 +1647,13 @@
                                         "description": "Email to send info messages about the event sourcing replay to",
                                         "type": "string",
                                         "format": "email"
+                                    },
+                                    "projectIds": {
+                                        "description": "Array of projectIds specifying the projects for which the DebtLineItems should be replayed",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
                                     }
                                 },
                                 "type": "object"
