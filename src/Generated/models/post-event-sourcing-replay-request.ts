@@ -26,5 +26,11 @@ export interface PostEventSourcingReplayRequest {
      * @memberof PostEventSourcingReplayRequest
      */
     'infoMailAddress'?: string;
+    /**
+     * Array of projectIds specifying the projects for which the DebtLineItems should be replayed
+     * @type {Array<string>}
+     * @memberof PostEventSourcingReplayRequest
+     */
+    'projectIds'?: Array<string>;
 }
 
