@@ -16,7 +16,7 @@ export class ReportService {
      * The filters dateFrom and dateTo are required unless an invoiceId filter is given.
      * @param filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
      * The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-     * @param filterInvoiceIds This filter restricts the data by the invoice id.
+     * @param filterInvoiceId This filter restricts the data by the invoice id.
      * @returns any OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
@@ -25,7 +25,7 @@ export class ReportService {
         filterProjectId: string,
         filterDateFrom?: string,
         filterDateTo?: string,
-        filterInvoiceIds?: string,
+        filterInvoiceId?: string,
     ): Promise<any | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -34,7 +34,7 @@ export class ReportService {
                 'filter[projectId]': filterProjectId,
                 'filter[dateFrom]': filterDateFrom,
                 'filter[dateTo]': filterDateTo,
-                'filter[invoiceIds]': filterInvoiceIds,
+                'filter[invoiceId]': filterInvoiceId,
             },
             errors: {
                 400: `Bad Request`,

@@ -2231,7 +2231,7 @@
                         "example": "2023-01-31T00:00:00+00:00"
                     },
                     {
-                        "name": "filter[invoiceIds]",
+                        "name": "filter[invoiceId]",
                         "in": "query",
                         "description": "This filter restricts the data by the invoice id.",
                         "schema": {
