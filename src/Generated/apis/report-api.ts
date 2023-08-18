@@ -40,11 +40,11 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} filterProjectId This filter restricts the data by the project id.
          * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
          * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-         * @param {string} [filterInvoiceIds] This filter restricts the data by the invoice id.
+         * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollectionReport: async (filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDebtLineItemCollectionReport: async (filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getDebtLineItemCollectionReport', 'filterProjectId', filterProjectId)
             const localVarPath = `/report/debt-line-item`;
@@ -83,8 +83,8 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
                     filterDateTo;
             }
 
-            if (filterInvoiceIds !== undefined) {
-                localVarQueryParameter['filter[invoiceIds]'] = filterInvoiceIds;
+            if (filterInvoiceId !== undefined) {
+                localVarQueryParameter['filter[invoiceId]'] = filterInvoiceId;
             }
 
 
@@ -264,12 +264,12 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {string} filterProjectId This filter restricts the data by the project id.
          * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
          * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-         * @param {string} [filterInvoiceIds] This filter restricts the data by the invoice id.
+         * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceIds, options);
+        async getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -320,12 +320,12 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {string} filterProjectId This filter restricts the data by the project id.
          * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
          * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-         * @param {string} [filterInvoiceIds] This filter restricts the data by the invoice id.
+         * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: any): AxiosPromise<string> {
-            return localVarFp.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceIds, options).then((request) => request(axios, basePath));
+        getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: any): AxiosPromise<string> {
+            return localVarFp.getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -372,12 +372,12 @@ export interface ReportApiInterface {
      * @param {string} filterProjectId This filter restricts the data by the project id.
      * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
      * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-     * @param {string} [filterInvoiceIds] This filter restricts the data by the invoice id.
+     * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig): AxiosPromise<string>;
+    getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): AxiosPromise<string>;
 
     /**
      * 
@@ -424,13 +424,13 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {string} filterProjectId This filter restricts the data by the project id.
      * @param {string} [filterDateFrom] This filter enables retrieval of data starting from a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
      * @param {string} [filterDateTo] This filter enables retrieval of data ending up to a specified date in UTC.                 The filters dateFrom and dateTo are required unless an invoiceId filter is given.
-     * @param {string} [filterInvoiceIds] This filter restricts the data by the invoice id.
+     * @param {string} [filterInvoiceId] This filter restricts the data by the invoice id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceIds, options).then((request) => request(this.axios, this.basePath));
+    public getDebtLineItemCollectionReport(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getDebtLineItemCollectionReport(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
