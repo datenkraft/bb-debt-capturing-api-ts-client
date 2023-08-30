@@ -192,62 +192,6 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
-         * @summary Get a list of undefined shipping costs in the specified time frame.
-         * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
-         * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getUndefinedShippingCostsCollectionReport: async (filterDateFrom: string, filterDateTo: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'filterDateFrom' is not null or undefined
-            assertParamExists('getUndefinedShippingCostsCollectionReport', 'filterDateFrom', filterDateFrom)
-            // verify required parameter 'filterDateTo' is not null or undefined
-            assertParamExists('getUndefinedShippingCostsCollectionReport', 'filterDateTo', filterDateTo)
-            const localVarPath = `/report/undefined-shipping-costs`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (filterDateFrom !== undefined) {
-                localVarQueryParameter['filter[dateFrom]'] = (filterDateFrom as any instanceof Date) ?
-                    (filterDateFrom as any).toISOString().substr(0,10) :
-                    filterDateFrom;
-            }
-
-            if (filterDateTo !== undefined) {
-                localVarQueryParameter['filter[dateTo]'] = (filterDateTo as any instanceof Date) ?
-                    (filterDateTo as any).toISOString().substr(0,10) :
-                    filterDateTo;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -292,18 +236,6 @@ export const ReportApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
-        /**
-         * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
-         * @summary Get a list of undefined shipping costs in the specified time frame.
-         * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
-         * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUndefinedShippingCostsCollectionReport(filterDateFrom, filterDateTo, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
     }
 };
 
@@ -346,17 +278,6 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
         getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
             return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, options).then((request) => request(axios, basePath));
         },
-        /**
-         * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
-         * @summary Get a list of undefined shipping costs in the specified time frame.
-         * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
-         * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: any): AxiosPromise<string> {
-            return localVarFp.getUndefinedShippingCostsCollectionReport(filterDateFrom, filterDateTo, options).then((request) => request(axios, basePath));
-        },
     };
 };
 
@@ -397,17 +318,6 @@ export interface ReportApiInterface {
      * @memberof ReportApiInterface
      */
     getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
-
-    /**
-     * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
-     * @summary Get a list of undefined shipping costs in the specified time frame.
-     * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
-     * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReportApiInterface
-     */
-    getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig): AxiosPromise<string>;
 
 }
 
@@ -452,18 +362,5 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      */
     public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig) {
         return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Get a list of undefined shipping costs in the specified time frame and the requested format.         The file type is controlled by the accept header.
-     * @summary Get a list of undefined shipping costs in the specified time frame.
-     * @param {string} filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
-     * @param {string} filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReportApi
-     */
-    public getUndefinedShippingCostsCollectionReport(filterDateFrom: string, filterDateTo: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getUndefinedShippingCostsCollectionReport(filterDateFrom, filterDateTo, options).then((request) => request(this.axios, this.basePath));
     }
 }
