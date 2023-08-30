@@ -1,7 +1,7 @@
 {
   "name": "@datenkraft/bb-debt-capturing-api-ts-client",
   "homepage": "https://bitbucket.org/datenkraft/bb-debt-capturing-api-ts-client#readme",
-  "version": "1.5.10",
+  "version": "1.5.11",
   "description": "The Debt Capturing API TS Client enables you to work with the Debt Capturing API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
