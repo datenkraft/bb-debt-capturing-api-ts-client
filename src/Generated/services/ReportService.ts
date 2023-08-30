@@ -102,36 +102,4 @@ export class ReportService {
         return result.body;
     }
 
-    /**
-     * Get a list of undefined shipping costs in the specified time frame.
-     * Get a list of undefined shipping costs in the specified time frame and the requested format.
-     * The file type is controlled by the accept header.
-     * @param filterDateFrom This filter enables retrieval of data starting from a specified date in UTC.
-     * @param filterDateTo This filter enables retrieval of data ending up to a specified date in UTC.
-     * @returns any OK
-     * @returns errorResponse Unexpected Error
-     * @throws ApiError
-     */
-    public static async getUndefinedShippingCostsCollectionReport(
-        filterDateFrom: string,
-        filterDateTo: string,
-    ): Promise<any | errorResponse> {
-        const result = await __request({
-            method: 'GET',
-            path: `/report/undefined-shipping-costs`,
-            query: {
-                'filter[dateFrom]': filterDateFrom,
-                'filter[dateTo]': filterDateTo,
-            },
-            errors: {
-                400: `Invalid time span`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                409: `Invalid or missing format`,
-                500: `Server Error`,
-            },
-        });
-        return result.body;
-    }
-
 }
