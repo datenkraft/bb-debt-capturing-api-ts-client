@@ -109,8 +109,8 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
          * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
-         * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
-         * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
+         * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -227,8 +227,8 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
          * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
-         * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
-         * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
+         * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -270,8 +270,8 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
          * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
-         * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
-         * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+         * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
+         * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -311,8 +311,8 @@ export interface ReportApiInterface {
      * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
      * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
-     * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
-     * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
+     * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
@@ -354,8 +354,8 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
      * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
-     * @param {string} [filterMetaKey] Key of the meta field (required with metaValue)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
-     * @param {string} [filterMetaValue] Value of the meta field (required with metaKey)&lt;br&gt;This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
+     * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
