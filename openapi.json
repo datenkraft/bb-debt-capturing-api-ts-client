@@ -2416,7 +2416,7 @@
                     {
                         "name": "filter[metaKey]",
                         "in": "query",
-                        "description": "Key of the meta field (required with metaValue)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!",
+                        "description": "Key of the skuUsage meta field (required with metaValue)",
                         "schema": {
                             "type": "string"
                         }
@@ -2424,7 +2424,7 @@
                     {
                         "name": "filter[metaValue]",
                         "in": "query",
-                        "description": "Value of the meta field (required with metaKey)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!",
+                        "description": "Value of the skuUsage meta field (required with metaKey)",
                         "schema": {
                             "type": "string"
                         }

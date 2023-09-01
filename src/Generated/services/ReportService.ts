@@ -59,8 +59,8 @@ export class ReportService {
      * @param filterUsageStart Start date of the usage (Y-m-d)
      * @param filterUsageEnd End date of the usage (Y-m-d)
      * @param filterInvoiceIds Comma delimited string of invoice ids
-     * @param filterMetaKey Key of the meta field (required with metaValue)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
-     * @param filterMetaValue Value of the meta field (required with metaKey)<br>This filter has usually no effect on the prices and their sum,since prices are calculated for debt line items and not single sku usages!
+     * @param filterMetaKey Key of the skuUsage meta field (required with metaValue)
+     * @param filterMetaValue Value of the skuUsage meta field (required with metaKey)
      * @returns debtLineItemAggregatedCollection OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
