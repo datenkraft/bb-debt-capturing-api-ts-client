@@ -61,6 +61,7 @@ export class ReportService {
      * @param filterInvoiceIds Comma delimited string of invoice ids
      * @param filterMetaKey Key of the skuUsage meta field (required with metaValue)
      * @param filterMetaValue Value of the skuUsage meta field (required with metaKey)
+     * @param filterInvoiced Filter for invoiced or open (= not invoiced) debt line items
      * @returns debtLineItemAggregatedCollection OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
@@ -76,6 +77,7 @@ export class ReportService {
         filterInvoiceIds?: string,
         filterMetaKey?: string,
         filterMetaValue?: string,
+        filterInvoiced?: boolean,
     ): Promise<debtLineItemAggregatedCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -91,6 +93,7 @@ export class ReportService {
                 'filter[invoiceIds]': filterInvoiceIds,
                 'filter[metaKey]': filterMetaKey,
                 'filter[metaValue]': filterMetaValue,
+                'filter[invoiced]': filterInvoiced,
             },
             errors: {
                 400: `Bad Request`,
