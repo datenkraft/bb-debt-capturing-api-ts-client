@@ -2428,6 +2428,14 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "filter[invoiced]",
+                        "in": "query",
+                        "description": "Filter for invoiced or open (= not invoiced) debt line items",
+                        "schema": {
+                            "type": "boolean"
+                        }
                     }
                 ],
                 "responses": {
