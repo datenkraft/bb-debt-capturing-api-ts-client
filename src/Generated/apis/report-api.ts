@@ -111,10 +111,11 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
+         * @param {boolean} [filterInvoiced] Filter for invoiced or open (&#x3D; not invoiced) debt line items
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getReportDebtLineItemCollectionAggregated', 'filterProjectId', filterProjectId)
             const localVarPath = `/report/debt-line-item/aggregated`;
@@ -181,6 +182,10 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['filter[metaValue]'] = filterMetaValue;
             }
 
+            if (filterInvoiced !== undefined) {
+                localVarQueryParameter['filter[invoiced]'] = filterInvoiced;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -229,11 +234,12 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
+         * @param {boolean} [filterInvoiced] Filter for invoiced or open (&#x3D; not invoiced) debt line items
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, options);
+        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -272,11 +278,12 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
+         * @param {boolean} [filterInvoiced] Filter for invoiced or open (&#x3D; not invoiced) debt line items
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
-            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, options).then((request) => request(axios, basePath));
+        getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
+            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -313,11 +320,12 @@ export interface ReportApiInterface {
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
      * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
      * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
+     * @param {boolean} [filterInvoiced] Filter for invoiced or open (&#x3D; not invoiced) debt line items
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
+    getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
 
 }
 
@@ -356,11 +364,12 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
      * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
      * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
+     * @param {boolean} [filterInvoiced] Filter for invoiced or open (&#x3D; not invoiced) debt line items
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, options).then((request) => request(this.axios, this.basePath));
+    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(this.axios, this.basePath));
     }
 }
