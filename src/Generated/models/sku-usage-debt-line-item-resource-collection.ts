@@ -13,24 +13,23 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SkuUsageDebtLineItemResource } from './sku-usage-debt-line-item-resource';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SkuUsageDebtLineItemResourceCollectionAllOf } from './sku-usage-debt-line-item-resource-collection-all-of';
 
 /**
- * 
+ * @type SkuUsageDebtLineItemResourceCollection
  * @export
- * @interface AuthRoleResource
  */
-export interface AuthRoleResource {
-    /**
-     * Role Code
-     * @type {string}
-     * @memberof AuthRoleResource
-     */
-    'roleCode': string;
-    /**
-     * Name
-     * @type {string}
-     * @memberof AuthRoleResource
-     */
-    'name': string;
-}
+export type SkuUsageDebtLineItemResourceCollection = Collection & SkuUsageDebtLineItemResourceCollectionAllOf;
+
 

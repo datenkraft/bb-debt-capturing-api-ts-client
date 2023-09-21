@@ -13,24 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { DebtLineItemResource } from './debt-line-item-resource';
 
 /**
  * 
  * @export
- * @interface AuthRoleResource
+ * @interface GetDebtLineItemCollectionResponseAllOf
  */
-export interface AuthRoleResource {
+export interface GetDebtLineItemCollectionResponseAllOf {
     /**
-     * Role Code
-     * @type {string}
-     * @memberof AuthRoleResource
+     * 
+     * @type {Array<DebtLineItemResource>}
+     * @memberof GetDebtLineItemCollectionResponseAllOf
      */
-    'roleCode': string;
-    /**
-     * Name
-     * @type {string}
-     * @memberof AuthRoleResource
-     */
-    'name': string;
+    'data'?: Array<DebtLineItemResource>;
 }
 
