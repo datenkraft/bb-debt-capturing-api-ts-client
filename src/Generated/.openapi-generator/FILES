@@ -47,6 +47,8 @@ models/error-references-inner.ts
 models/error-response.ts
 models/get-auth-permission-collection-response-all-of.ts
 models/get-auth-permission-collection-response.ts
+models/get-debt-line-item-collection-response-all-of.ts
+models/get-debt-line-item-collection-response.ts
 models/get-event-sourcing-replay200-response.ts
 models/index.ts
 models/information-response.ts
@@ -61,5 +63,7 @@ models/new-invoice.ts
 models/post-event-sourcing-replay-request.ts
 models/post-event-sourcing-replay200-response.ts
 models/price-property.ts
+models/sku-usage-debt-line-item-resource-collection-all-of.ts
+models/sku-usage-debt-line-item-resource-collection.ts
 models/sku-usage-debt-line-item-resource.ts
 models/update-invoice.ts

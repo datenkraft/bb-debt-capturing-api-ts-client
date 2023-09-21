@@ -13,24 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { SkuUsageDebtLineItemResource } from './sku-usage-debt-line-item-resource';
 
 /**
  * 
  * @export
- * @interface AuthRoleResource
+ * @interface SkuUsageDebtLineItemResourceCollectionAllOf
  */
-export interface AuthRoleResource {
+export interface SkuUsageDebtLineItemResourceCollectionAllOf {
     /**
-     * Role Code
-     * @type {string}
-     * @memberof AuthRoleResource
+     * Class SkuUsageDebtLineItemResourceCollection
+     * @type {Array<SkuUsageDebtLineItemResource>}
+     * @memberof SkuUsageDebtLineItemResourceCollectionAllOf
      */
-    'roleCode': string;
-    /**
-     * Name
-     * @type {string}
-     * @memberof AuthRoleResource
-     */
-    'name': string;
+    'data'?: Array<SkuUsageDebtLineItemResource>;
 }
 
