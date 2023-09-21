@@ -13,7 +13,7 @@ describe("Client Test (staging)", () => {
 
     DebtCapturingApiClient.getApiConfig(
       configOptions,
-      "https://debt-capturing-api.staging.backbone.datenkraft.info/v1"
+      "https://debt-capturing-api.staging.backbone.datenkraft.info/v2"
     )
       .then((config) => {
         const authRoleApi = new AuthRoleApi(config);
