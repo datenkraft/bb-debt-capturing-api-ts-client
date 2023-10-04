@@ -1445,7 +1445,7 @@
                         }
                     },
                     {
-                        "name": "filter[invoiceIds]",
+                        "name": "filter[invoiceId]",
                         "in": "query",
                         "description": "invoiceId filter",
                         "schema": {
@@ -1954,7 +1954,7 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "The maximum size per page is 100. Default is 20.",
+                        "description": "The maximum size per page is 100. Default is 100.",
                         "required": false,
                         "schema": {
                             "type": "integer"
@@ -2003,6 +2003,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "401": {
                         "description": "Unauthorized",
                         "content": {
@@ -2015,16 +2025,6 @@
                     },
                     "403": {
                         "description": "Forbidden",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2194,6 +2194,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/invoice"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -2468,8 +2478,8 @@
                             }
                         }
                     },
-                    "409": {
-                        "description": "Invalid or missing format",
+                    "406": {
+                        "description": "Not Acceptable",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2531,7 +2541,7 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "The maximum size per page is 100. Default is 20.",
+                        "description": "The maximum size per page is 100. Default is 100.",
                         "required": false,
                         "schema": {
                             "type": "integer"

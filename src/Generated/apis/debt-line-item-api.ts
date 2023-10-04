@@ -87,11 +87,11 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
          * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterInvoiceIds] invoiceId filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollection: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDebtLineItemCollection: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getDebtLineItemCollection', 'filterProjectId', filterProjectId)
             const localVarPath = `/debt-line-item`;
@@ -142,8 +142,8 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
                     filterDateTo;
             }
 
-            if (filterInvoiceIds !== undefined) {
-                localVarQueryParameter['filter[invoiceIds]'] = filterInvoiceIds;
+            if (filterInvoiceId !== undefined) {
+                localVarQueryParameter['filter[invoiceId]'] = filterInvoiceId;
             }
 
 
@@ -187,12 +187,12 @@ export const DebtLineItemApiFp = function(configuration?: Configuration) {
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
          * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterInvoiceIds] invoiceId filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDebtLineItemCollectionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollection(filterProjectId, page, pageSize, paginationMode, filterDateFrom, filterDateTo, filterInvoiceIds, options);
+        async getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDebtLineItemCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollection(filterProjectId, page, pageSize, paginationMode, filterDateFrom, filterDateTo, filterInvoiceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -224,12 +224,12 @@ export const DebtLineItemApiFactory = function (configuration?: Configuration, b
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
          * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterInvoiceIds] invoiceId filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: any): AxiosPromise<GetDebtLineItemCollectionResponse> {
-            return localVarFp.getDebtLineItemCollection(filterProjectId, page, pageSize, paginationMode, filterDateFrom, filterDateTo, filterInvoiceIds, options).then((request) => request(axios, basePath));
+        getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: any): AxiosPromise<GetDebtLineItemCollectionResponse> {
+            return localVarFp.getDebtLineItemCollection(filterProjectId, page, pageSize, paginationMode, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -259,12 +259,12 @@ export interface DebtLineItemApiInterface {
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
      * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-     * @param {string} [filterInvoiceIds] invoiceId filter
+     * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebtLineItemApiInterface
      */
-    getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig): AxiosPromise<GetDebtLineItemCollectionResponse>;
+    getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): AxiosPromise<GetDebtLineItemCollectionResponse>;
 
 }
 
@@ -296,12 +296,12 @@ export class DebtLineItemApi extends BaseAPI implements DebtLineItemApiInterface
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
      * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-     * @param {string} [filterInvoiceIds] invoiceId filter
+     * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebtLineItemApi
      */
-    public getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig) {
-        return DebtLineItemApiFp(this.configuration).getDebtLineItemCollection(filterProjectId, page, pageSize, paginationMode, filterDateFrom, filterDateTo, filterInvoiceIds, options).then((request) => request(this.axios, this.basePath));
+    public getDebtLineItemCollection(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig) {
+        return DebtLineItemApiFp(this.configuration).getDebtLineItemCollection(filterProjectId, page, pageSize, paginationMode, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(this.axios, this.basePath));
     }
 }

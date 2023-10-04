@@ -103,7 +103,7 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @summary 
          * @param {string} filterProjectId Mandatory filter for the project id
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
          * @param {string} [filterSkuCode] Like Search for the sku code
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
@@ -226,7 +226,7 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @summary 
          * @param {string} filterProjectId Mandatory filter for the project id
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
          * @param {string} [filterSkuCode] Like Search for the sku code
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
@@ -270,7 +270,7 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @summary 
          * @param {string} filterProjectId Mandatory filter for the project id
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
          * @param {string} [filterSkuCode] Like Search for the sku code
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
@@ -312,7 +312,7 @@ export interface ReportApiInterface {
      * @summary 
      * @param {string} filterProjectId Mandatory filter for the project id
      * @param {number} [page] The page to read. Default is the first page.
-     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
      * @param {string} [filterSkuCode] Like Search for the sku code
      * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
@@ -356,7 +356,7 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @summary 
      * @param {string} filterProjectId Mandatory filter for the project id
      * @param {number} [page] The page to read. Default is the first page.
-     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
      * @param {string} [filterSkuCode] Like Search for the sku code
      * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
