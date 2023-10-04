@@ -16,7 +16,7 @@ export class DebtLineItemService {
      * given.
      * @param filterDateTo dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is
      * given.
-     * @param filterInvoiceIds invoiceId filter
+     * @param filterInvoiceId invoiceId filter
      * @returns getDebtLineItemCollectionResponse OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -25,7 +25,7 @@ export class DebtLineItemService {
         filterProjectId: string,
         filterDateFrom?: string,
         filterDateTo?: string,
-        filterInvoiceIds?: string,
+        filterInvoiceId?: string,
     ): Promise<getDebtLineItemCollectionResponse | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -34,7 +34,7 @@ export class DebtLineItemService {
                 'filter[projectId]': filterProjectId,
                 'filter[dateFrom]': filterDateFrom,
                 'filter[dateTo]': filterDateTo,
-                'filter[invoiceIds]': filterInvoiceIds,
+                'filter[invoiceId]': filterInvoiceId,
             },
             errors: {
                 400: `Bad Request`,
