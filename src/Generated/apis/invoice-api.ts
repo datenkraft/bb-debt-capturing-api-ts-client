@@ -86,7 +86,7 @@ export const InvoiceApiAxiosParamCreator = function (configuration?: Configurati
          * Get a list of invoices.
          * @summary Get a list of invoices.
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
          * @param {string} [filterProjectId] Project id filter
          * @param {string} [filterInvoiceNumber] Invoice number filter
@@ -262,7 +262,7 @@ export const InvoiceApiFp = function(configuration?: Configuration) {
          * Get a list of invoices.
          * @summary Get a list of invoices.
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
          * @param {string} [filterProjectId] Project id filter
          * @param {string} [filterInvoiceNumber] Invoice number filter
@@ -320,7 +320,7 @@ export const InvoiceApiFactory = function (configuration?: Configuration, basePa
          * Get a list of invoices.
          * @summary Get a list of invoices.
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
          * @param {string} [filterProjectId] Project id filter
          * @param {string} [filterInvoiceNumber] Invoice number filter
@@ -374,7 +374,7 @@ export interface InvoiceApiInterface {
      * Get a list of invoices.
      * @summary Get a list of invoices.
      * @param {number} [page] The page to read. Default is the first page.
-     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
      * @param {string} [filterProjectId] Project id filter
      * @param {string} [filterInvoiceNumber] Invoice number filter
@@ -430,7 +430,7 @@ export class InvoiceApi extends BaseAPI implements InvoiceApiInterface {
      * Get a list of invoices.
      * @summary Get a list of invoices.
      * @param {number} [page] The page to read. Default is the first page.
-     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
      * @param {string} [filterProjectId] Project id filter
      * @param {string} [filterInvoiceNumber] Invoice number filter

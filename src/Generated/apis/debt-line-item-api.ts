@@ -82,11 +82,11 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
          * @param {string} filterProjectId projectId filter
          * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
          * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterInvoiceIds] invoiceId filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollection: async (filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDebtLineItemCollection: async (filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getDebtLineItemCollection', 'filterProjectId', filterProjectId)
             const localVarPath = `/debt-line-item`;
@@ -125,8 +125,8 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
                     filterDateTo;
             }
 
-            if (filterInvoiceIds !== undefined) {
-                localVarQueryParameter['filter[invoiceIds]'] = filterInvoiceIds;
+            if (filterInvoiceId !== undefined) {
+                localVarQueryParameter['filter[invoiceId]'] = filterInvoiceId;
             }
 
 
@@ -167,12 +167,12 @@ export const DebtLineItemApiFp = function(configuration?: Configuration) {
          * @param {string} filterProjectId projectId filter
          * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
          * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterInvoiceIds] invoiceId filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DebtLineItemResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceIds, options);
+        async getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DebtLineItemResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -201,12 +201,12 @@ export const DebtLineItemApiFactory = function (configuration?: Configuration, b
          * @param {string} filterProjectId projectId filter
          * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
          * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterInvoiceIds] invoiceId filter
+         * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: any): AxiosPromise<Array<DebtLineItemResource>> {
-            return localVarFp.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceIds, options).then((request) => request(axios, basePath));
+        getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: any): AxiosPromise<Array<DebtLineItemResource>> {
+            return localVarFp.getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -233,12 +233,12 @@ export interface DebtLineItemApiInterface {
      * @param {string} filterProjectId projectId filter
      * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
      * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-     * @param {string} [filterInvoiceIds] invoiceId filter
+     * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebtLineItemApiInterface
      */
-    getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig): AxiosPromise<Array<DebtLineItemResource>>;
+    getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<DebtLineItemResource>>;
 
 }
 
@@ -267,12 +267,12 @@ export class DebtLineItemApi extends BaseAPI implements DebtLineItemApiInterface
      * @param {string} filterProjectId projectId filter
      * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
      * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-     * @param {string} [filterInvoiceIds] invoiceId filter
+     * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DebtLineItemApi
      */
-    public getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceIds?: string, options?: AxiosRequestConfig) {
-        return DebtLineItemApiFp(this.configuration).getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceIds, options).then((request) => request(this.axios, this.basePath));
+    public getDebtLineItemCollection(filterProjectId: string, filterDateFrom?: string, filterDateTo?: string, filterInvoiceId?: string, options?: AxiosRequestConfig) {
+        return DebtLineItemApiFp(this.configuration).getDebtLineItemCollection(filterProjectId, filterDateFrom, filterDateTo, filterInvoiceId, options).then((request) => request(this.axios, this.basePath));
     }
 }
