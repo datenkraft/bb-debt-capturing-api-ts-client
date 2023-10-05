@@ -40,7 +40,7 @@ export class ReportService {
                 400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                409: `Invalid or missing format`,
+                406: `Not Acceptable`,
                 500: `Server Error`,
             },
         });
@@ -50,7 +50,7 @@ export class ReportService {
     /**
      * @param filterProjectId Mandatory filter for the project id
      * @param page The page to read. Default is the first page.
-     * @param pageSize The maximum size per page is 100. Default is 20.
+     * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
      * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.

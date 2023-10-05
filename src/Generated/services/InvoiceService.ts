@@ -14,7 +14,7 @@ export class InvoiceService {
      * Get a list of invoices.
      * Get a list of invoices.
      * @param page The page to read. Default is the first page.
-     * @param pageSize The maximum size per page is 100. Default is 20.
+     * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
      * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
@@ -43,9 +43,9 @@ export class InvoiceService {
                 'filter[invoiceNumber]': filterInvoiceNumber,
             },
             errors: {
+                400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                404: `Not Found`,
                 500: `Server error`,
             },
         });
@@ -94,6 +94,7 @@ export class InvoiceService {
             method: 'GET',
             path: `/invoice/${invoiceId}`,
             errors: {
+                400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 404: `Not Found`,
