@@ -15,21 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DebtLineItemResourceAllOf } from './debt-line-item-resource-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewDebtLineItemResource } from './new-debt-line-item-resource';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewDebtLineItemResourcePriceTotal } from './new-debt-line-item-resource-price-total';
-// May contain unused imports in some cases
-// @ts-ignore
 import { PriceProperty } from './price-property';
 
 /**
- * @type DebtLineItemResource
+ * @type NewDebtLineItemResourcePriceTotal
  * @export
  */
-export type DebtLineItemResource = DebtLineItemResourceAllOf & NewDebtLineItemResource;
+export type NewDebtLineItemResourcePriceTotal = PriceProperty;
 
 

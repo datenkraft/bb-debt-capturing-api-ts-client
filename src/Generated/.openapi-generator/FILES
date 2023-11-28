@@ -41,7 +41,7 @@ models/debt-line-item-aggregated-sku-sum.ts
 models/debt-line-item-aggregated-sku-usage.ts
 models/debt-line-item-aggregated-sku.ts
 models/debt-line-item-aggregated.ts
-models/debt-line-item-resource-price-total.ts
+models/debt-line-item-resource-all-of.ts
 models/debt-line-item-resource.ts
 models/error-references-inner.ts
 models/error-response.ts
@@ -59,6 +59,8 @@ models/invoice-collection.ts
 models/invoice.ts
 models/model-error.ts
 models/new-auth-role-resource.ts
+models/new-debt-line-item-resource-price-total.ts
+models/new-debt-line-item-resource.ts
 models/new-invoice.ts
 models/post-event-sourcing-replay-request.ts
 models/post-event-sourcing-replay200-response.ts

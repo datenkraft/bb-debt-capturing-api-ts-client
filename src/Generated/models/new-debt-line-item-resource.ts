@@ -15,21 +15,43 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DebtLineItemResourceAllOf } from './debt-line-item-resource-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewDebtLineItemResource } from './new-debt-line-item-resource';
-// May contain unused imports in some cases
-// @ts-ignore
 import { NewDebtLineItemResourcePriceTotal } from './new-debt-line-item-resource-price-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import { PriceProperty } from './price-property';
 
 /**
- * @type DebtLineItemResource
+ * 
  * @export
+ * @interface NewDebtLineItemResource
  */
-export type DebtLineItemResource = DebtLineItemResourceAllOf & NewDebtLineItemResource;
-
+export interface NewDebtLineItemResource {
+    /**
+     * skuCode
+     * @type {string}
+     * @memberof NewDebtLineItemResource
+     */
+    'skuCode': string;
+    /**
+     * quantity
+     * @type {number}
+     * @memberof NewDebtLineItemResource
+     */
+    'quantity': number | null;
+    /**
+     * Start time of the usage
+     * @type {string}
+     * @memberof NewDebtLineItemResource
+     */
+    'usageStart': string;
+    /**
+     * End time of the usage
+     * @type {string}
+     * @memberof NewDebtLineItemResource
+     */
+    'usageEnd': string;
+    /**
+     * 
+     * @type {NewDebtLineItemResourcePriceTotal}
+     * @memberof NewDebtLineItemResource
+     */
+    'priceTotal': NewDebtLineItemResourcePriceTotal | null;
+}
 

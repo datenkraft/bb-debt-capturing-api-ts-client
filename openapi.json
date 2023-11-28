@@ -2384,6 +2384,125 @@
                 ]
             }
         },
+        "/invoice/{invoiceId}/debt-line-item": {
+            "post": {
+                "tags": [
+                    "invoice"
+                ],
+                "summary": "Add a new invoice.",
+                "description": "Add a debtLineItem to an invoice.",
+                "operationId": "postInvoiceDebtLineItem",
+                "parameters": [
+                    {
+                        "name": "invoiceId",
+                        "in": "path",
+                        "description": "Invoice id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newDebtLineItemResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/debtLineItemResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.\n- PERMISSIONS_TO_PROJECT_MISSING: Permissions to the projectId are missing.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.\n- DEBT_LINE_ITEM_CURRENCY_NOT_PROCESSABLE: A provided currency can not be processed for debt line items.\n- DEBT_LINE_ITEM_USAGE_DATE_INVALID: A provided usage date for debt line items is not valid.\n- DEBT_LINE_ITEM_NOT_CALCULATABLE: A debt line item can not be calculated.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": [],
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/report/debt-line-item": {
             "get": {
                 "tags": [
@@ -3247,69 +3366,42 @@
                 "type": "object"
             },
             "debtLineItemResource": {
-                "required": [
-                    "debtLineItemId",
-                    "skuCode",
-                    "projectId",
-                    "usageStart",
-                    "usageEnd"
-                ],
-                "properties": {
-                    "debtLineItemId": {
-                        "description": "debtLineItemId",
-                        "type": "string"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/newDebtLineItemResource"
                     },
-                    "skuCode": {
-                        "description": "skuCode",
-                        "type": "string"
-                    },
-                    "quantity": {
-                        "description": "quantity",
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "projectId": {
-                        "description": "projectId",
-                        "type": "string"
-                    },
-                    "usageStart": {
-                        "description": "Start time of the usage",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "usageEnd": {
-                        "description": "End time of the usage",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "priceTotal": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/components/schemas/priceProperty"
+                    {
+                        "properties": {
+                            "debtLineItemId": {
+                                "description": "debtLineItemId",
+                                "type": "string"
+                            },
+                            "projectId": {
+                                "description": "projectId",
+                                "type": "string"
+                            },
+                            "invoiceId": {
+                                "description": "invoiceId",
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "unit": {
+                                "description": "Unit",
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "pricePerUnit": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/components/schemas/priceProperty"
+                                    }
+                                ],
+                                "nullable": true
                             }
-                        ],
-                        "nullable": true
-                    },
-                    "invoiceId": {
-                        "description": "invoiceId",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "unit": {
-                        "description": "Unit",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "pricePerUnit": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/components/schemas/priceProperty"
-                            }
-                        ],
-                        "nullable": true
+                        },
+                        "type": "object"
                     }
-                },
-                "type": "object"
+                ]
             },
             "error": {
                 "required": [
@@ -3486,6 +3578,45 @@
                     "name": {
                         "description": "Name",
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "newDebtLineItemResource": {
+                "required": [
+                    "skuCode",
+                    "quantity",
+                    "usageStart",
+                    "usageEnd",
+                    "priceTotal"
+                ],
+                "properties": {
+                    "skuCode": {
+                        "description": "skuCode",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "description": "quantity",
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "usageStart": {
+                        "description": "Start time of the usage",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "usageEnd": {
+                        "description": "End time of the usage",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "priceTotal": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/priceProperty"
+                            }
+                        ],
+                        "nullable": true
                     }
                 },
                 "type": "object"
