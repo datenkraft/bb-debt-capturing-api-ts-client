@@ -25,11 +25,15 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { DebtLineItemResource } from '../models';
+// @ts-ignore
 import { ErrorResponse } from '../models';
 // @ts-ignore
 import { Invoice } from '../models';
 // @ts-ignore
 import { InvoiceCollection } from '../models';
+// @ts-ignore
+import { NewDebtLineItemResource } from '../models';
 // @ts-ignore
 import { NewInvoice } from '../models';
 // @ts-ignore
@@ -237,6 +241,54 @@ export const InvoiceApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Add a debtLineItem to an invoice.
+         * @summary Add a new invoice.
+         * @param {string} invoiceId Invoice id
+         * @param {NewDebtLineItemResource} newDebtLineItemResource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postInvoiceDebtLineItem: async (invoiceId: string, newDebtLineItemResource: NewDebtLineItemResource, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'invoiceId' is not null or undefined
+            assertParamExists('postInvoiceDebtLineItem', 'invoiceId', invoiceId)
+            // verify required parameter 'newDebtLineItemResource' is not null or undefined
+            assertParamExists('postInvoiceDebtLineItem', 'newDebtLineItemResource', newDebtLineItemResource)
+            const localVarPath = `/invoice/{invoiceId}/debt-line-item`
+                .replace(`{${"invoiceId"}}`, encodeURIComponent(String(invoiceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(newDebtLineItemResource, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -296,6 +348,18 @@ export const InvoiceApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postInvoice(newInvoice, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Add a debtLineItem to an invoice.
+         * @summary Add a new invoice.
+         * @param {string} invoiceId Invoice id
+         * @param {NewDebtLineItemResource} newDebtLineItemResource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postInvoiceDebtLineItem(invoiceId: string, newDebtLineItemResource: NewDebtLineItemResource, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemResource>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postInvoiceDebtLineItem(invoiceId, newDebtLineItemResource, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -351,6 +415,17 @@ export const InvoiceApiFactory = function (configuration?: Configuration, basePa
         postInvoice(newInvoice: NewInvoice, options?: any): AxiosPromise<Invoice> {
             return localVarFp.postInvoice(newInvoice, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Add a debtLineItem to an invoice.
+         * @summary Add a new invoice.
+         * @param {string} invoiceId Invoice id
+         * @param {NewDebtLineItemResource} newDebtLineItemResource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postInvoiceDebtLineItem(invoiceId: string, newDebtLineItemResource: NewDebtLineItemResource, options?: any): AxiosPromise<DebtLineItemResource> {
+            return localVarFp.postInvoiceDebtLineItem(invoiceId, newDebtLineItemResource, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -404,6 +479,17 @@ export interface InvoiceApiInterface {
      * @memberof InvoiceApiInterface
      */
     postInvoice(newInvoice: NewInvoice, options?: AxiosRequestConfig): AxiosPromise<Invoice>;
+
+    /**
+     * Add a debtLineItem to an invoice.
+     * @summary Add a new invoice.
+     * @param {string} invoiceId Invoice id
+     * @param {NewDebtLineItemResource} newDebtLineItemResource 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InvoiceApiInterface
+     */
+    postInvoiceDebtLineItem(invoiceId: string, newDebtLineItemResource: NewDebtLineItemResource, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemResource>;
 
 }
 
@@ -465,5 +551,18 @@ export class InvoiceApi extends BaseAPI implements InvoiceApiInterface {
      */
     public postInvoice(newInvoice: NewInvoice, options?: AxiosRequestConfig) {
         return InvoiceApiFp(this.configuration).postInvoice(newInvoice, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Add a debtLineItem to an invoice.
+     * @summary Add a new invoice.
+     * @param {string} invoiceId Invoice id
+     * @param {NewDebtLineItemResource} newDebtLineItemResource 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InvoiceApi
+     */
+    public postInvoiceDebtLineItem(invoiceId: string, newDebtLineItemResource: NewDebtLineItemResource, options?: AxiosRequestConfig) {
+        return InvoiceApiFp(this.configuration).postInvoiceDebtLineItem(invoiceId, newDebtLineItemResource, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -18,9 +18,40 @@
 import { PriceProperty } from './price-property';
 
 /**
- * @type DebtLineItemResourcePriceTotal
+ * 
  * @export
+ * @interface DebtLineItemResourceAllOf
  */
-export type DebtLineItemResourcePriceTotal = PriceProperty;
-
+export interface DebtLineItemResourceAllOf {
+    /**
+     * debtLineItemId
+     * @type {string}
+     * @memberof DebtLineItemResourceAllOf
+     */
+    'debtLineItemId'?: string;
+    /**
+     * projectId
+     * @type {string}
+     * @memberof DebtLineItemResourceAllOf
+     */
+    'projectId'?: string;
+    /**
+     * invoiceId
+     * @type {string}
+     * @memberof DebtLineItemResourceAllOf
+     */
+    'invoiceId'?: string | null;
+    /**
+     * Unit
+     * @type {string}
+     * @memberof DebtLineItemResourceAllOf
+     */
+    'unit'?: string | null;
+    /**
+     * 
+     * @type {PriceProperty}
+     * @memberof DebtLineItemResourceAllOf
+     */
+    'pricePerUnit'?: PriceProperty | null;
+}
 
