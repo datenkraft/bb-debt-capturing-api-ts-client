@@ -85,8 +85,8 @@ export const DebtLineItemApiAxiosParamCreator = function (configuration?: Config
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
+         * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
          * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -185,8 +185,8 @@ export const DebtLineItemApiFp = function(configuration?: Configuration) {
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
+         * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
          * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -222,8 +222,8 @@ export const DebtLineItemApiFactory = function (configuration?: Configuration, b
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-         * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
+         * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+         * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
          * @param {string} [filterInvoiceId] invoiceId filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -257,8 +257,8 @@ export interface DebtLineItemApiInterface {
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-     * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
+     * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+     * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
      * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -294,8 +294,8 @@ export class DebtLineItemApi extends BaseAPI implements DebtLineItemApiInterface
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
-     * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is            given.
+     * @param {string} [filterDateFrom] dateFrom filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
+     * @param {string} [filterDateTo] dateTo filter. The filters dateFrom and dateTo are required unless an invoiceId filter is given.
      * @param {string} [filterInvoiceId] invoiceId filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
