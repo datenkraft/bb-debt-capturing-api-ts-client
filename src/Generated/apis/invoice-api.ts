@@ -31,8 +31,6 @@ import { ErrorResponse } from '../models';
 // @ts-ignore
 import { Invoice } from '../models';
 // @ts-ignore
-import { InvoiceCollection } from '../models';
-// @ts-ignore
 import { NewDebtLineItemResource } from '../models';
 // @ts-ignore
 import { NewInvoice } from '../models';
@@ -91,7 +89,7 @@ export const InvoiceApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get a list of invoices.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProjectId] Project id filter
          * @param {string} [filterInvoiceNumber] Invoice number filter
          * @param {*} [options] Override http request option.
@@ -315,13 +313,13 @@ export const InvoiceApiFp = function(configuration?: Configuration) {
          * @summary Get a list of invoices.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProjectId] Project id filter
          * @param {string} [filterInvoiceNumber] Invoice number filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InvoiceCollection>> {
+        async getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ErrorResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoiceCollection(page, pageSize, paginationMode, filterProjectId, filterInvoiceNumber, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -385,13 +383,13 @@ export const InvoiceApiFactory = function (configuration?: Configuration, basePa
          * @summary Get a list of invoices.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProjectId] Project id filter
          * @param {string} [filterInvoiceNumber] Invoice number filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: any): AxiosPromise<InvoiceCollection> {
+        getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: any): AxiosPromise<ErrorResponse> {
             return localVarFp.getInvoiceCollection(page, pageSize, paginationMode, filterProjectId, filterInvoiceNumber, options).then((request) => request(axios, basePath));
         },
         /**
@@ -450,14 +448,14 @@ export interface InvoiceApiInterface {
      * @summary Get a list of invoices.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProjectId] Project id filter
      * @param {string} [filterInvoiceNumber] Invoice number filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InvoiceApiInterface
      */
-    getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): AxiosPromise<InvoiceCollection>;
+    getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): AxiosPromise<ErrorResponse>;
 
     /**
      * Updates some fields on an invoice. Only a limited set of fields can be updated
@@ -517,7 +515,7 @@ export class InvoiceApi extends BaseAPI implements InvoiceApiInterface {
      * @summary Get a list of invoices.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.                 
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProjectId] Project id filter
      * @param {string} [filterInvoiceNumber] Invoice number filter
      * @param {*} [options] Override http request option.
