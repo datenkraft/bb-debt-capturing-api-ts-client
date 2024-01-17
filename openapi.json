@@ -3371,12 +3371,13 @@
                                 "nullable": true
                             },
                             "pricePerUnit": {
-                                "oneOf": [
+                                "description": "Price per Unit",
+                                "nullable": true,
+                                "allOf": [
                                     {
                                         "$ref": "#/components/schemas/priceProperty"
                                     }
-                                ],
-                                "nullable": true
+                                ]
                             }
                         },
                         "type": "object"
@@ -3591,12 +3592,13 @@
                         "format": "date-time"
                     },
                     "priceTotal": {
-                        "oneOf": [
+                        "description": "priceTotal",
+                        "nullable": true,
+                        "allOf": [
                             {
                                 "$ref": "#/components/schemas/priceProperty"
                             }
-                        ],
-                        "nullable": true
+                        ]
                     }
                 },
                 "type": "object"
