@@ -48,7 +48,7 @@ export interface DebtLineItemResourceAllOf {
      */
     'unit'?: string | null;
     /**
-     * 
+     * Price per Unit
      * @type {PriceProperty}
      * @memberof DebtLineItemResourceAllOf
      */

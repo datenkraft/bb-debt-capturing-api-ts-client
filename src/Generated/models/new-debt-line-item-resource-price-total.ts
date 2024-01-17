@@ -19,6 +19,7 @@ import { PriceProperty } from './price-property';
 
 /**
  * @type NewDebtLineItemResourcePriceTotal
+ * priceTotal
  * @export
  */
 export type NewDebtLineItemResourcePriceTotal = PriceProperty;
