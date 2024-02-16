@@ -3378,6 +3378,11 @@
                                         "$ref": "#/components/schemas/priceProperty"
                                     }
                                 ]
+                            },
+                            "note": {
+                                "description": "note",
+                                "type": "string",
+                                "nullable": true
                             }
                         },
                         "type": "object"
