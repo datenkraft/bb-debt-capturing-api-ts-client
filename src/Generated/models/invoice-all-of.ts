@@ -36,7 +36,8 @@ export interface InvoiceAllOf {
 
 export const InvoiceAllOfInvoiceStatusEnum = {
     Processing: 'processing',
-    Completed: 'completed'
+    Completed: 'completed',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type InvoiceAllOfInvoiceStatusEnum = typeof InvoiceAllOfInvoiceStatusEnum[keyof typeof InvoiceAllOfInvoiceStatusEnum];

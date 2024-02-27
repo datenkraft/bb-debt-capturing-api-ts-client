@@ -31,7 +31,8 @@ export interface GetEventSourcingReplay200Response {
 export const GetEventSourcingReplay200ResponseStatusEnum = {
     Active: 'active',
     Available: 'available',
-    Locked: 'locked'
+    Locked: 'locked',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type GetEventSourcingReplay200ResponseStatusEnum = typeof GetEventSourcingReplay200ResponseStatusEnum[keyof typeof GetEventSourcingReplay200ResponseStatusEnum];
