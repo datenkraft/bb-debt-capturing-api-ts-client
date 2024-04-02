@@ -1993,6 +1993,16 @@
                     }
                 ],
                 "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/invoiceCollection"
+                                }
+                            }
+                        }
+                    },
                     "400": {
                         "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {

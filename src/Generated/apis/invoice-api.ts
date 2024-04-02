@@ -31,6 +31,8 @@ import { ErrorResponse } from '../models';
 // @ts-ignore
 import { Invoice } from '../models';
 // @ts-ignore
+import { InvoiceCollection } from '../models';
+// @ts-ignore
 import { NewDebtLineItemResource } from '../models';
 // @ts-ignore
 import { NewInvoice } from '../models';
@@ -319,7 +321,7 @@ export const InvoiceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ErrorResponse>> {
+        async getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InvoiceCollection>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoiceCollection(page, pageSize, paginationMode, filterProjectId, filterInvoiceNumber, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -389,7 +391,7 @@ export const InvoiceApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: any): AxiosPromise<ErrorResponse> {
+        getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: any): AxiosPromise<InvoiceCollection> {
             return localVarFp.getInvoiceCollection(page, pageSize, paginationMode, filterProjectId, filterInvoiceNumber, options).then((request) => request(axios, basePath));
         },
         /**
@@ -455,7 +457,7 @@ export interface InvoiceApiInterface {
      * @throws {RequiredError}
      * @memberof InvoiceApiInterface
      */
-    getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): AxiosPromise<ErrorResponse>;
+    getInvoiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProjectId?: string, filterInvoiceNumber?: string, options?: AxiosRequestConfig): AxiosPromise<InvoiceCollection>;
 
     /**
      * Updates some fields on an invoice. Only a limited set of fields can be updated
