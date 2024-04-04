@@ -2693,7 +2693,23 @@
                     {
                         "name": "filter[skuCode]",
                         "in": "query",
-                        "description": "Like Search for the sku code",
+                        "description": "Filter for the sku code (full text search)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[note]",
+                        "in": "query",
+                        "description": "Filter for the debt line item note (full text search)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[search]",
+                        "in": "query",
+                        "description": "Provide a search term to filter debt line items.\n\nThe search term is matched against the following fields:\n- skuCode\n- debtLineItems.*.note\n- debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop)\n- debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)\n\nIf the search term is found in one of the fields, the resource is included in the result.\nThe search is case insensitive.",
                         "schema": {
                             "type": "string"
                         }
@@ -3243,6 +3259,11 @@
                     },
                     "invoiceNumber": {
                         "description": "Number of the invoice",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "note": {
+                        "description": "note",
                         "type": "string",
                         "nullable": true
                     },

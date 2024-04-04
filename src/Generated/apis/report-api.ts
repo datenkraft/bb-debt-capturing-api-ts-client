@@ -105,7 +105,9 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterSkuCode] Like Search for the sku code
+         * @param {string} [filterSkuCode] Filter for the sku code (full text search)
+         * @param {string} [filterNote] Filter for the debt line item note (full text search)
+         * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
          * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
@@ -115,7 +117,7 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getReportDebtLineItemCollectionAggregated', 'filterProjectId', filterProjectId)
             const localVarPath = `/report/debt-line-item/aggregated`;
@@ -156,6 +158,14 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (filterSkuCode !== undefined) {
                 localVarQueryParameter['filter[skuCode]'] = filterSkuCode;
+            }
+
+            if (filterNote !== undefined) {
+                localVarQueryParameter['filter[note]'] = filterNote;
+            }
+
+            if (filterSearch !== undefined) {
+                localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
             if (filterUsageStart !== undefined) {
@@ -228,7 +238,9 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterSkuCode] Like Search for the sku code
+         * @param {string} [filterSkuCode] Filter for the sku code (full text search)
+         * @param {string} [filterNote] Filter for the debt line item note (full text search)
+         * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
          * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
@@ -238,8 +250,8 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options);
+        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -272,7 +284,9 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterSkuCode] Like Search for the sku code
+         * @param {string} [filterSkuCode] Filter for the sku code (full text search)
+         * @param {string} [filterNote] Filter for the debt line item note (full text search)
+         * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
          * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
          * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
@@ -282,8 +296,8 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
-            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(axios, basePath));
+        getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
+            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -314,7 +328,9 @@ export interface ReportApiInterface {
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterSkuCode] Like Search for the sku code
+     * @param {string} [filterSkuCode] Filter for the sku code (full text search)
+     * @param {string} [filterNote] Filter for the debt line item note (full text search)
+     * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
      * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
      * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
@@ -325,7 +341,7 @@ export interface ReportApiInterface {
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
+    getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
 
 }
 
@@ -358,7 +374,9 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterSkuCode] Like Search for the sku code
+     * @param {string} [filterSkuCode] Filter for the sku code (full text search)
+     * @param {string} [filterNote] Filter for the debt line item note (full text search)
+     * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
      * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
      * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
@@ -369,7 +387,7 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(this.axios, this.basePath));
+    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(this.axios, this.basePath));
     }
 }

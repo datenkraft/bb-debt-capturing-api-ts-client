@@ -75,6 +75,12 @@ export interface DebtLineItemAggregated {
      */
     'invoiceNumber'?: string | null;
     /**
+     * note
+     * @type {string}
+     * @memberof DebtLineItemAggregated
+     */
+    'note'?: string | null;
+    /**
      * 
      * @type {Array<DebtLineItemAggregatedSkuUsage>}
      * @memberof DebtLineItemAggregated
