@@ -21,6 +21,12 @@
  */
 export interface InvoiceAllOf {
     /**
+     * The invoice number.
+     * @type {string}
+     * @memberof InvoiceAllOf
+     */
+    'invoiceNumber'?: string;
+    /**
      * Invoice id
      * @type {string}
      * @memberof InvoiceAllOf

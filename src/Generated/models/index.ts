@@ -42,6 +42,7 @@ export * from './new-auth-role-resource';
 export * from './new-debt-line-item-resource';
 export * from './new-debt-line-item-resource-price-total';
 export * from './new-invoice';
+export * from './new-invoice-all-of';
 export * from './post-event-sourcing-replay200-response';
 export * from './post-event-sourcing-replay-request';
 export * from './price-property';

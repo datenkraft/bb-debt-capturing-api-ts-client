@@ -13,17 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseInvoice } from './base-invoice';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewInvoiceAllOf } from './new-invoice-all-of';
 
 /**
- * @type NewInvoice
+ * 
  * @export
+ * @interface NewInvoiceAllOf
  */
-export type NewInvoice = BaseInvoice & NewInvoiceAllOf;
-
+export interface NewInvoiceAllOf {
+    /**
+     * Optional invoice number. If null or not set, it will be auto-generated based on the cutoffDate in the format \"YYYY-MM: RE01-YYYY-\". Even when auto-generated, the invoice number must be unique for a projectId.
+     * @type {string}
+     * @memberof NewInvoiceAllOf
+     */
+    'invoiceNumber'?: string | null;
+}
 

@@ -61,6 +61,7 @@ models/model-error.ts
 models/new-auth-role-resource.ts
 models/new-debt-line-item-resource-price-total.ts
 models/new-debt-line-item-resource.ts
+models/new-invoice-all-of.ts
 models/new-invoice.ts
 models/post-event-sourcing-replay-request.ts
 models/post-event-sourcing-replay200-response.ts

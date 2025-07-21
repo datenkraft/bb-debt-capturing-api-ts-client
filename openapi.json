@@ -2130,7 +2130,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nError codes:\n- DATA_ALREADY_EXISTS: A data conflict was detected.",
+                        "description": "Conflict\n\nError codes:\n- DATA_ALREADY_EXISTS: A data conflict was detected.\n- PROCESSING_INVOICE_EXISTS: An invoice with status 'processing' already exists for this project.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3160,21 +3160,10 @@
                 "type": "object"
             },
             "baseInvoice": {
-                "required": [
-                    "projectId",
-                    "invoiceNumber",
-                    "cutoffDate"
-                ],
                 "properties": {
                     "projectId": {
                         "description": "Project id",
                         "type": "string"
-                    },
-                    "invoiceNumber": {
-                        "description": "The invoice number, may be null.",
-                        "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
                     },
                     "cutoffDate": {
                         "description": "The invoice includes all DebtLineItems with a usageStart and usageEnd date less or equal than the cutoff date, which existed and were not already invoiced at the time of processing the invoice.",
@@ -3531,19 +3520,17 @@
                 "type": "object"
             },
             "invoice": {
-                "required": [
-                    "invoiceId",
-                    "projectId",
-                    "invoiceStatus",
-                    "invoiceNumber",
-                    "cutoffDate"
-                ],
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/baseInvoice"
                     },
                     {
                         "properties": {
+                            "invoiceNumber": {
+                                "description": "The invoice number.",
+                                "type": "string",
+                                "maxLength": 255
+                            },
                             "invoiceId": {
                                 "description": "Invoice id",
                                 "type": "string"
@@ -3642,6 +3629,17 @@
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/baseInvoice"
+                    },
+                    {
+                        "properties": {
+                            "invoiceNumber": {
+                                "description": "Optional invoice number. If null or not set, it will be auto-generated based on the cutoffDate\nin the format \"YYYY-MM: RE01-YYYY-\". Even when auto-generated, the invoice number must be unique\nfor a projectId.",
+                                "type": "string",
+                                "maxLength": 255,
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
