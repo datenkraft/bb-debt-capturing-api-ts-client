@@ -7,18 +7,17 @@ describe("Client Test (staging)", () => {
     const configOptions: ConfigOptions = {
       clientId: process.env.DEV_CLIENT_ID ?? "",
       clientSecret: process.env.DEV_CLIENT_SECRET_STAGING ?? "",
-      oAuthTokenHost:
-        "https://authentication-api.staging.backbone.datenkraft.info",
+      oAuthTokenHost: "https://authentication-api.sandbox.steve.niceshops.com",
     };
 
     XxxApiClient.getApiConfig(
       configOptions,
-      "https://xxx-api.staging.backbone.datenkraft.info/v1"
+      "https://xxx-api.sandbox.steve.niceshops.com/v1"
     )
       .then((config) => {
-        const Xxxapi = new XxxApi(config);
+        const xxxApi = new XxxApi(config);
 
-        XxxApi
+        xxxApi
           .getXxxCollection()
           .then(({ data: response }) => {
             // testcase
