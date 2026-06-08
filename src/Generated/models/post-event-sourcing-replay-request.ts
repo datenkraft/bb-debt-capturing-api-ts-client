@@ -27,10 +27,16 @@ export interface PostEventSourcingReplayRequest {
      */
     'infoMailAddress'?: string;
     /**
-     * Array of projectIds specifying the projects for which the DebtLineItems should be replayed
+     * Array of projectIds specifying the projects for which the DebtLineItems should be replayed. Must not be combined with organizationId.
      * @type {Array<string>}
      * @memberof PostEventSourcingReplayRequest
      */
     'projectIds'?: Array<string>;
+    /**
+     * Optional organizationId. When provided, all projects of the organization are resolved automatically and used for the replay. Must not be combined with projectIds.
+     * @type {string}
+     * @memberof PostEventSourcingReplayRequest
+     */
+    'organizationId'?: string;
 }
 

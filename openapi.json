@@ -1817,7 +1817,7 @@
                     "eventSourcingReplay"
                 ],
                 "summary": "Execute event sourcing replay (recalculates DebtLineItems)",
-                "description": "Execute event sourcing replay (recalculates DebtLineItems).\n\nPlease be aware of the effects a replay involves!\n- The replay does not affect DebtLineItems with an Invoice_Id set.\n- Changes of the calculators/prices will affect non invoiced, past, events\nand therefore also the resulting DebtLineItems.\n- At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set,\nget deleted.\n- If no projectIds are provided, all DebtLineItems are affected by the replay.",
+                "description": "Execute event sourcing replay (recalculates DebtLineItems).\n\nPlease be aware of the effects a replay involves!\n- The replay does not affect DebtLineItems with an Invoice_Id set.\n- Changes of the calculators/prices will affect non invoiced, past, events\nand therefore also the resulting DebtLineItems.\n- At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set,\nget deleted.\n- If no projectIds are provided, all DebtLineItems are affected by the replay.\n- If an organizationId is provided, all projects of that organization are resolved automatically\nand used for the replay. organizationId and projectIds must not be provided together.",
                 "operationId": "postEventSourcingReplay",
                 "requestBody": {
                     "required": false,
@@ -1831,11 +1831,16 @@
                                         "format": "email"
                                     },
                                     "projectIds": {
-                                        "description": "Array of projectIds specifying the projects for which the DebtLineItems should be replayed",
+                                        "description": "Array of projectIds specifying the projects for which the DebtLineItems should be replayed.\nMust not be combined with organizationId.",
                                         "type": "array",
                                         "items": {
                                             "type": "string"
                                         }
+                                    },
+                                    "organizationId": {
+                                        "description": "Optional organizationId. When provided, all projects of the organization are resolved\nautomatically and used for the replay. Must not be combined with projectIds.",
+                                        "type": "string",
+                                        "format": "uuid"
                                     }
                                 },
                                 "type": "object"
@@ -1893,6 +1898,16 @@
                     },
                     "409": {
                         "description": "Conflict\n\nError codes:\n- EVENT_SOURCING_REPLAY_NOT_AVAILABLE: Event Sourcing Replay is not available.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_INVALID: Invalid data was given.\n- EVENT_SOURCING_REPLAY_ORGANIZATION_HAS_NO_PROJECTS: The provided organization has no projects to replay.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3635,8 +3650,8 @@
                             "invoiceNumber": {
                                 "description": "Optional invoice number. If null or not set, it will be auto-generated based on the cutoffDate\nin the format \"YYYY-MM: RE01-YYYY-\". Even when auto-generated, the invoice number must be unique\nfor a projectId.",
                                 "type": "string",
-                                "maxLength": 255,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 255
                             }
                         },
                         "type": "object"
@@ -3728,5 +3743,51 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "audit-log",
+            "description": "audit-log"
+        },
+        {
+            "name": "auth-permission",
+            "description": "auth-permission"
+        },
+        {
+            "name": "auth-permission-role",
+            "description": "auth-permission-role"
+        },
+        {
+            "name": "auth-role",
+            "description": "auth-role"
+        },
+        {
+            "name": "auth-role-identity",
+            "description": "auth-role-identity"
+        },
+        {
+            "name": "debtLineItem",
+            "description": "debtLineItem"
+        },
+        {
+            "name": "docs",
+            "description": "docs"
+        },
+        {
+            "name": "eventSourcingReplay",
+            "description": "eventSourcingReplay"
+        },
+        {
+            "name": "invoice",
+            "description": "invoice"
+        },
+        {
+            "name": "report",
+            "description": "report"
+        },
+        {
+            "name": "skuUsageDebtLineItem",
+            "description": "skuUsageDebtLineItem"
+        }
+    ]
 }
