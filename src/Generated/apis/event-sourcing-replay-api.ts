@@ -77,7 +77,7 @@ export const EventSourcingReplayApiAxiosParamCreator = function (configuration?:
             };
         },
         /**
-         * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay.
+         * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay. - If an organizationId is provided, all projects of that organization are resolved automatically and used for the replay. organizationId and projectIds must not be provided together.
          * @summary Execute event sourcing replay (recalculates DebtLineItems)
          * @param {PostEventSourcingReplayRequest} [postEventSourcingReplayRequest] 
          * @param {*} [options] Override http request option.
@@ -139,7 +139,7 @@ export const EventSourcingReplayApiFp = function(configuration?: Configuration) 
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay.
+         * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay. - If an organizationId is provided, all projects of that organization are resolved automatically and used for the replay. organizationId and projectIds must not be provided together.
          * @summary Execute event sourcing replay (recalculates DebtLineItems)
          * @param {PostEventSourcingReplayRequest} [postEventSourcingReplayRequest] 
          * @param {*} [options] Override http request option.
@@ -169,7 +169,7 @@ export const EventSourcingReplayApiFactory = function (configuration?: Configura
             return localVarFp.getEventSourcingReplay(options).then((request) => request(axios, basePath));
         },
         /**
-         * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay.
+         * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay. - If an organizationId is provided, all projects of that organization are resolved automatically and used for the replay. organizationId and projectIds must not be provided together.
          * @summary Execute event sourcing replay (recalculates DebtLineItems)
          * @param {PostEventSourcingReplayRequest} [postEventSourcingReplayRequest] 
          * @param {*} [options] Override http request option.
@@ -197,7 +197,7 @@ export interface EventSourcingReplayApiInterface {
     getEventSourcingReplay(options?: AxiosRequestConfig): AxiosPromise<GetEventSourcingReplay200Response>;
 
     /**
-     * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay.
+     * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay. - If an organizationId is provided, all projects of that organization are resolved automatically and used for the replay. organizationId and projectIds must not be provided together.
      * @summary Execute event sourcing replay (recalculates DebtLineItems)
      * @param {PostEventSourcingReplayRequest} [postEventSourcingReplayRequest] 
      * @param {*} [options] Override http request option.
@@ -227,7 +227,7 @@ export class EventSourcingReplayApi extends BaseAPI implements EventSourcingRepl
     }
 
     /**
-     * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay.
+     * Execute event sourcing replay (recalculates DebtLineItems).  Please be aware of the effects a replay involves! - The replay does not affect DebtLineItems with an Invoice_Id set. - Changes of the calculators/prices will affect non invoiced, past, events and therefore also the resulting DebtLineItems. - At the beginning/before the replay starts, the DebtLineItems, which are not invoiced yet/no Invoice_Id set, get deleted. - If no projectIds are provided, all DebtLineItems are affected by the replay. - If an organizationId is provided, all projects of that organization are resolved automatically and used for the replay. organizationId and projectIds must not be provided together.
      * @summary Execute event sourcing replay (recalculates DebtLineItems)
      * @param {PostEventSourcingReplayRequest} [postEventSourcingReplayRequest] 
      * @param {*} [options] Override http request option.
