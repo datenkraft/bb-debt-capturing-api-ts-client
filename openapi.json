@@ -3278,11 +3278,6 @@
                                         "$ref": "#/components/schemas/priceProperty"
                                     }
                                 ]
-                            },
-                            "note": {
-                                "description": "note",
-                                "type": "string",
-                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -3497,6 +3492,12 @@
                                 "$ref": "#/components/schemas/priceProperty"
                             }
                         ]
+                    },
+                    "note": {
+                        "description": "Free text note, e.g. the reason for a manual correction",
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 255
                     }
                 },
                 "type": "object"
