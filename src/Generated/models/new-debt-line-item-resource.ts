@@ -53,5 +53,11 @@ export interface NewDebtLineItemResource {
      * @memberof NewDebtLineItemResource
      */
     'priceTotal': NewDebtLineItemResourcePriceTotal | null;
+    /**
+     * Free text note, e.g. the reason for a manual correction
+     * @type {string}
+     * @memberof NewDebtLineItemResource
+     */
+    'note'?: string | null;
 }
 
