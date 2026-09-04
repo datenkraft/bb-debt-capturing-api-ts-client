@@ -53,11 +53,5 @@ export interface DebtLineItemResourceAllOf {
      * @memberof DebtLineItemResourceAllOf
      */
     'pricePerUnit'?: PriceProperty | null;
-    /**
-     * note
-     * @type {string}
-     * @memberof DebtLineItemResourceAllOf
-     */
-    'note'?: string | null;
 }
 
