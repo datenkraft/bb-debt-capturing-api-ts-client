@@ -44,8 +44,8 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [filterSkuCode] Filter for the sku code (full text search)
          * @param {string} [filterNote] Filter for the debt line item note (full text search)
          * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
-         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -163,8 +163,8 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {string} [filterSkuCode] Filter for the sku code (full text search)
          * @param {string} [filterNote] Filter for the debt line item note (full text search)
          * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
-         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -196,8 +196,8 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [filterSkuCode] Filter for the sku code (full text search)
          * @param {string} [filterNote] Filter for the debt line item note (full text search)
          * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
-         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -227,8 +227,8 @@ export interface ReportApiInterface {
      * @param {string} [filterSkuCode] Filter for the sku code (full text search)
      * @param {string} [filterNote] Filter for the debt line item note (full text search)
      * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
-     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
+     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
      * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
      * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -258,8 +258,8 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {string} [filterSkuCode] Filter for the sku code (full text search)
      * @param {string} [filterNote] Filter for the debt line item note (full text search)
      * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d)
-     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d)
+     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
+     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
      * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
      * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
