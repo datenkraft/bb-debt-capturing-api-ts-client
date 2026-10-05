@@ -2597,7 +2597,7 @@
                     {
                         "name": "filter[usageStart]",
                         "in": "query",
-                        "description": "Start date of the usage (Y-m-d)",
+                        "description": "Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.",
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -2606,7 +2606,7 @@
                     {
                         "name": "filter[usageEnd]",
                         "in": "query",
-                        "description": "End date of the usage (Y-m-d)",
+                        "description": "End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.",
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -2652,6 +2652,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/debtLineItemAggregatedCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
