@@ -38,14 +38,14 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * 
          * @summary 
          * @param {string} filterProjectId Mandatory filter for the project id
+         * @param {string} filterUsageStart Mandatory start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given. The range between filter[usageStart] and filter[usageEnd] (or today if not given) must not exceed one year.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterSkuCode] Filter for the sku code (full text search)
          * @param {string} [filterNote] Filter for the debt line item note (full text search)
          * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
-         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart]. Must not be more than one year after filter[usageStart]. If not given, today is used for this check.
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -53,9 +53,11 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReportDebtLineItemCollectionAggregated: async (filterProjectId: string, filterUsageStart: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterProjectId' is not null or undefined
             assertParamExists('getReportDebtLineItemCollectionAggregated', 'filterProjectId', filterProjectId)
+            // verify required parameter 'filterUsageStart' is not null or undefined
+            assertParamExists('getReportDebtLineItemCollectionAggregated', 'filterUsageStart', filterUsageStart)
             const localVarPath = `/report/debt-line-item/aggregated`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -157,14 +159,14 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * 
          * @summary 
          * @param {string} filterProjectId Mandatory filter for the project id
+         * @param {string} filterUsageStart Mandatory start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given. The range between filter[usageStart] and filter[usageEnd] (or today if not given) must not exceed one year.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterSkuCode] Filter for the sku code (full text search)
          * @param {string} [filterNote] Filter for the debt line item note (full text search)
          * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
-         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart]. Must not be more than one year after filter[usageStart]. If not given, today is used for this check.
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -172,8 +174,8 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options);
+        async getReportDebtLineItemCollectionAggregated(filterProjectId: string, filterUsageStart: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DebtLineItemAggregatedCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportDebtLineItemCollectionAggregated(filterProjectId, filterUsageStart, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -190,14 +192,14 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * 
          * @summary 
          * @param {string} filterProjectId Mandatory filter for the project id
+         * @param {string} filterUsageStart Mandatory start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given. The range between filter[usageStart] and filter[usageEnd] (or today if not given) must not exceed one year.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterSkuCode] Filter for the sku code (full text search)
          * @param {string} [filterNote] Filter for the debt line item note (full text search)
          * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-         * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
-         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
+         * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart]. Must not be more than one year after filter[usageStart]. If not given, today is used for this check.
          * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
          * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
          * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -205,8 +207,8 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
-            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(axios, basePath));
+        getReportDebtLineItemCollectionAggregated(filterProjectId: string, filterUsageStart: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: any): AxiosPromise<DebtLineItemAggregatedCollection> {
+            return localVarFp.getReportDebtLineItemCollectionAggregated(filterProjectId, filterUsageStart, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -221,14 +223,14 @@ export interface ReportApiInterface {
      * 
      * @summary 
      * @param {string} filterProjectId Mandatory filter for the project id
+     * @param {string} filterUsageStart Mandatory start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given. The range between filter[usageStart] and filter[usageEnd] (or today if not given) must not exceed one year.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterSkuCode] Filter for the sku code (full text search)
      * @param {string} [filterNote] Filter for the debt line item note (full text search)
      * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
-     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
+     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart]. Must not be more than one year after filter[usageStart]. If not given, today is used for this check.
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
      * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
      * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -237,7 +239,7 @@ export interface ReportApiInterface {
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
+    getReportDebtLineItemCollectionAggregated(filterProjectId: string, filterUsageStart: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig): AxiosPromise<DebtLineItemAggregatedCollection>;
 
 }
 
@@ -252,14 +254,14 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * 
      * @summary 
      * @param {string} filterProjectId Mandatory filter for the project id
+     * @param {string} filterUsageStart Mandatory start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given. The range between filter[usageStart] and filter[usageEnd] (or today if not given) must not exceed one year.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterSkuCode] Filter for the sku code (full text search)
      * @param {string} [filterNote] Filter for the debt line item note (full text search)
      * @param {string} [filterSearch] Provide a search term to filter debt line items.  The search term is matched against the following fields: - skuCode - debtLineItems.*.note - debtLineItems.*.skuUsages.*.meta.orderNumber (without internalReferencePrefix of the shop) - debtLineItems.*.skuUsages.*.meta.inboundDeliveryNumber (without internalReferencePrefix of the shop)  If the search term is found in one of the fields, the resource is included in the result. The search is case insensitive.
-     * @param {string} [filterUsageStart] Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.
-     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.
+     * @param {string} [filterUsageEnd] End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart]. Must not be more than one year after filter[usageStart]. If not given, today is used for this check.
      * @param {string} [filterInvoiceIds] Comma delimited string of invoice ids
      * @param {string} [filterMetaKey] Key of the skuUsage meta field (required with metaValue)
      * @param {string} [filterMetaValue] Value of the skuUsage meta field (required with metaKey)
@@ -268,7 +270,7 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageStart?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageStart, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(this.axios, this.basePath));
+    public getReportDebtLineItemCollectionAggregated(filterProjectId: string, filterUsageStart: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterSkuCode?: string, filterNote?: string, filterSearch?: string, filterUsageEnd?: string, filterInvoiceIds?: string, filterMetaKey?: string, filterMetaValue?: string, filterInvoiced?: boolean, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getReportDebtLineItemCollectionAggregated(filterProjectId, filterUsageStart, page, pageSize, paginationMode, filterSkuCode, filterNote, filterSearch, filterUsageEnd, filterInvoiceIds, filterMetaKey, filterMetaValue, filterInvoiced, options).then((request) => request(this.axios, this.basePath));
     }
 }

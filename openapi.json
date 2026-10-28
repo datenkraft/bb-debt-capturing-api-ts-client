@@ -2597,7 +2597,8 @@
                     {
                         "name": "filter[usageStart]",
                         "in": "query",
-                        "description": "Start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.",
+                        "description": "Mandatory start date of the usage (Y-m-d, inclusive). Must not be after filter[usageEnd] if both are given.\nThe range between filter[usageStart] and filter[usageEnd] (or today if not given) must not exceed one year.",
+                        "required": true,
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -2606,7 +2607,7 @@
                     {
                         "name": "filter[usageEnd]",
                         "in": "query",
-                        "description": "End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart] if both are given.",
+                        "description": "End date of the usage (Y-m-d, inclusive). Must not be before filter[usageStart].\nMust not be more than one year after filter[usageStart]. If not given, today is used for this check.",
                         "schema": {
                             "type": "string",
                             "format": "date"
